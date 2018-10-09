@@ -10,7 +10,10 @@ let  recipeSchema= new Schema({
     cookingTime: Number,
     totalTime:Number,
     comments: [{type: Schema.Types.ObjectId, ref: 'comment'}],
-    youtubeUrl: String
+    youtubeUrl: String,
+    diet: [],
+    alergans: [],
+    rating: {type:Number, min:0, max:5}
 });
 
 const Recipe = mongoose.model('recipe', recipeSchema)
