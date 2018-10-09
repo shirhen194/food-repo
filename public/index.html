@@ -12,9 +12,68 @@
 </head>
 
 <body>
-<div class="container">
+    
+    <div class="container search">
+        <button type="button" class="btn search-by-name">Search by recipe name</button>
+        <button type="button" class="btn search-by-ingredients">Search by ingredients</button>
+    </div>
+    <div class="container name-search-screen">
+        <form class="header-form">
+            <div class="form-group">
+                <h1>Search by name</h1>
+                <br>
+                <div class="input-group mb-3 name-search-form">
+                    <input type="text" class="form-control" id="recipe-input" placeholder="Enter recipe name..:)"
+                        aria-describedby="basic-addon2" required>
+                    <button type="button" class="btn add-ingredients">add ingredients you want?</button>
+                    <input type="text" class="form-control toggle-ingredients-input" id="ingredients-input" placeholder="Enter ingredient/s with comma between!"
+                        aria-describedby="basic-addon2" required>
+                    <div class="allergies">Allergies:<br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="gluten-checkbox" value="gluten">
+                            <label class="form-check-label" for="gluten-checkbox">gluten</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="tree-nut-checkbox" value="tree-nut">
+                            <label class="form-check-label" for="tree-nut-checkbox">tree-nut</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="peanuts-checkbox" value="peanuts">
+                            <label class="form-check-label" for="peanuts-checkbox">peanuts</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="dairy-checkbox" value="dairy">
+                            <label class="form-check-label" for="dairy-checkbox">dairy</label>
+                        </div>
+                    </div>
+                    <div class="diet">Diet:<br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="vegan-checkbox" value="vegan">
+                            <label class="form-check-label" for="vegan-checkbox">vegan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="vegetarian-checkbox" value="vegetarian">
+                            <label class="form-check-label" for="vegetarian-checkbox">vegetarian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="high-protein-checkbox" value="high-protein">
+                            <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="low-sugar-checkbox" value="low-sugar">
+                            <label class="form-check-label" for="low-sugar-checkbox">low-sugar</label>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary Get-recipes">Get recipes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
-</div>
+
+
     <script src="jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="handlebars/dist/handlebars.min.js" type="text/javascript"></script>
     <script src="main.js" type="module"></script>
