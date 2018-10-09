@@ -1,6 +1,7 @@
 class RecipesRepository {
     constructor() {
         this.recipes = []
+        this.currentRecipe = {}
     }
 
     getAllRecipes(){
@@ -15,9 +16,9 @@ class RecipesRepository {
         })
     }
 
-    addAComment(newComment){
-        return $.post('/comments', {newComment: newComment}).then((recipes)=>{
-            this.recipes = recipes;
+    addAComment(newComment, recipeId){
+        return $.post('/comments', {newComment: newComment, recipeId: recipeId}).then((recipe)=>{
+            this.currentRecipe = recipe;
         })
     }
 }
