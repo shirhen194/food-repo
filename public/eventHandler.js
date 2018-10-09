@@ -44,7 +44,7 @@ class EventsHandler {
         let ingredients=$(".toggle-ingredients-input").val()
 
         //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
-        this.recipesApiRepository.getRecipesApi(url).then((recipeis)=> )
+        this.recipesApiRepository.getRecipesApi(url).then((recipeis)=> {})
     })}
 
 

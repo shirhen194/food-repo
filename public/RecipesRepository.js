@@ -21,8 +21,6 @@ class RecipesRepository {
             this.currentRecipe = recipe;
         })
     }
-
-    
 }
 
 export default RecipesRepository
