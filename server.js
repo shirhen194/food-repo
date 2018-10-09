@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // mongoose.Promise = global.Promise;
-const api = require('./routes/api.js')
+
 
 
 const SERVER_PORT = 8080;

@@ -1,0 +1,7 @@
+.toggle-ingredients-input {
+    display: none;
+  }
+  
+  .show {
+    display: block;
+  }
