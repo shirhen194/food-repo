@@ -18,11 +18,11 @@
         <br>
         Image: <input type="text" class="form-control" id="imgCreate" placeholder="Enter image URL here" />
         <br>
-        Ingridiants: 
+        Ingridiants:
         <input type="text" class="form-control" id="ingridientCreate" placeholder="Enter ingrediant here" />
         <input type="text" class="form-control" id="ingridientPortionCreate" placeholder="Enter portion here" />
         <button type="button" id="addIngredients" class="btn btn-primary">ADD INGRIDIENT</button>
-        <ul id="ingridients"></ul>
+        <ul id="ingredients"></ul>
         <br>
         Directions: <input type="text" class="form-control" id="directionsCreate" placeholder="Entere the directions of the recipe" />
         <br>
@@ -35,30 +35,30 @@
         Youtube URL<input type="text" class="form-control" id="youtubeUrlCreate" placeholder="If you have a youtube video instruction add the Url here." />
         <br>
         Diets:
-        
+
         <input type="checkbox" id="veganCreate" name="feature" value="vagan" />
         <label for="vegan">vegan</label>
-        
+
         <input type="checkbox" id="vegetarianCreate" name="feature" value="vegetarian" />
         <label for="vegetarian">vegetarian</label>
-        
+
         <input type="checkbox" id="high-proteinCreate" name="feature" value="high-protein" />
         <label for="high-protein">high-protein</label>
-        
+
         <input type="checkbox" id="low-sugarCreate" name="feature" value="low-sugar" />
         <label for="low-sugar">low-sugar</label>
         <br>
         Alergies:
-        
+
         <input type="checkbox" id="gluten-freeCreate" name="feature" value="gluten-free" />
         <label for="gluten-free">gluten-Free</label>
-        
+
         <input type="checkbox" id="dairy-freeCreate" name="feature" value="dairy-free" />
         <label for="dairy-free">dairy-Free</label>
-        
+
         <input type="checkbox" id="peanutsCreate" name="feature" value="peanuts" />
         <label for="peanuts">peanut-free</label>
-        
+
         <input type="checkbox" id="treenutsCreate" name="feature" value="treenuts" />
         <label for="treenuts">tree-nut-free</label>
         <br>
@@ -79,49 +79,57 @@
                 <div class="input-group mb-3 name-search-form">
                     <input type="text" class="form-control" id="recipe-input" placeholder="Enter recipe name..:)"
                         required>
-                        <br>
+                    <br>
                     <button type="button" class="btn add-ingredients">add ingredients you want?</button>
                     <br>
                     <input type="text" class="form-control toggle-ingredients-input" id="ingredients-input" placeholder="Enter ingredient/s with comma between!"
-                         required>
-                         <div class="container">
-                    <div class="allergies">Allergies:<br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="gluten-checkbox" value="gluten-free">
-                            <label class="form-check-label" for="gluten-checkbox">gluten-free</label>
+                        required>
+                    <div class="container">
+                        <div class="allergies">Allergies:<br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="gluten-checkbox"
+                                    value="gluten-free">
+                                <label class="form-check-label" for="gluten-checkbox">gluten-free</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox"
+                                    value="tree-nut-free">
+                                <label class="form-check-label" for="tree-nut-checkbox">tree-nut-free</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox"
+                                    value="peanut-free">
+                                <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="dairy-checkbox"
+                                    value="dairy-free">
+                                <label class="form-check-label" for="dairy-checkbox">dairy-free</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox" value="tree-nut-free">
-                            <label class="form-check-label" for="tree-nut-checkbox">tree-nut-free</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox" value="peanut-free">
-                            <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="dairy-checkbox" value="dairy-free">
-                            <label class="form-check-label" for="dairy-checkbox">dairy-free</label>
+                        <div class="diet">Diet:<br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="vegan-checkbox"
+                                    value="vegan">
+                                <label class="form-check-label" for="vegan-checkbox">vegan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox"
+                                    value="vegetarian">
+                                <label class="form-check-label" for="vegetarian-checkbox">vegetarian</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox"
+                                    value="high-protein">
+                                <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="low-sugar-checkbox"
+                                    value="low-sugar">
+                                <label class="form-check-label" for="low-sugar-checkbox">low-sugar</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="diet">Diet:<br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature"  id="vegan-checkbox" value="vegan">
-                            <label class="form-check-label" for="vegan-checkbox">vegan</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox" value="vegetarian">
-                            <label class="form-check-label" for="vegetarian-checkbox">vegetarian</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox" value="high-protein">
-                            <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="feature" id="low-sugar-checkbox" value="low-sugar">
-                            <label class="form-check-label" for="low-sugar-checkbox">low-sugar</label>
-                        </div>
-                    </div>
-                </div>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-primary Get-recipes">Get recipes</button>
                     </div>
@@ -131,19 +139,53 @@
     </div>
 
 
+    <!-- לכאן הכל מגיע-->
 
-
+    <!-- לכאן הכל מגיע -->
     <div class="recipes"></div>
 
+    <!-- לכאן הכל מגיע -->
+
+
+    <!-- render recipe -->
     <script id="recipe-template" type="text/x-handlebars-template">
+            <h3>{{name}}</h3>
+            <img src="{{img}}">
+            <p>Prep-time: {{prepTime}} </p>
+            <p>Cooking-time: {{cookingTime}} </p>
+            <p>Total-time: {{totalTime}} </p>
+            <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
+            <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
+            Ingredients:
+            <ul> 
+                {{#each ingredients}}
+                <li>{{this.name}} - {{this.portion}}</li>
+                {{/each}}
+            </ul>
+            <p>directions: {{directions}}</p>
+    </script>
+
+    <script id="ingrediant-template" type="text/x-handlebars-template">
+        {{#each ings}}
+        <li class='ingredient'>
+            <button class='btn btn-danger removeIng'>remove</button>
+                <span class="ingName">{{name}}</span>: 
+                <span class="ingPortion">{{portion}}</span>  
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- render recipes -->
+
+    <script id="recipes-template" type="text/x-handlebars-template">
         {{#each recipes}}
             <h3>{{name}}</h3>
             <img src="{{img}}">
             <p>Prep-time: {{prepTime}} </p>
             <p>Cooking-time: {{cookingTime}} </p>
             <p>Total-time: {{totalTime}} </p>
-            <p>Alergies: {{alergies}}</p>
-            <p>Diets: {{diets}}</p>
+            <p>Alergans: {{alergans}}</p>
+            <p>Diets: {{diet}}</p>
             Ingredients:
             <ul> 
                 {{#each ingridiant}}
@@ -156,7 +198,7 @@
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
         {{#each ings}}
-        <li class='ingridient'>
+        <li class='ingredient'>
             <button class='btn btn-danger removeIng'>remove</button>
                 <span class="ingName">{{name}}</span>: 
                 <span class="ingPortion"> {{portion}}</span>  

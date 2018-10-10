@@ -1,7 +1,7 @@
 class EventsHandler {
     constructor(recipesRepository, renderer, recipesApiRepository) {
         this.recipesRepository = recipesRepository;
-        this.render = renderer;
+        this.renderer = renderer;
         this.recipesApiRepository = recipesApiRepository;
     }
 
@@ -18,8 +18,8 @@ class EventsHandler {
                 img: $('#imgCreate').val(),
                 ingredients: this.recipesRepository.ingredients,
                 directions: $('#directionsCreate').val(),
-                prepTime: JSON.parse($('#prepTimeCreate').val()),
-                cookingTime: JSON.parse($('#cookingTimeCreate').val()),
+                prepTime: parseInt($('#prepTimeCreate').val()),
+                cookingTime: parseInt($('#cookingTimeCreate').val()),
                 youtubeUrl: $('#youtubeUrlCreate').val(),
                 diet: [],
                 alergans: []
@@ -41,8 +41,10 @@ class EventsHandler {
                 }
             }
 
-            this.recipesRepository.addARecipe(resipes).then(()=>{
-            this.render.renderRecipes(this.recipesRepository.recipes);
+            let newRecipe = JSON.stringify(recipe)
+
+            this.recipesRepository.addARecipe({newRecipe: newRecipe}).then(()=>{
+            this.renderer.renderRecipes(this.recipesRepository.currentRecipe);
             this.recipesRepository.removeAllIng();
             })
         })
@@ -100,8 +102,8 @@ class EventsHandler {
             }
         
             //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
-            this.recipesApiRepository.getRecipesApi(url).then((recipeis) => { })
-            this.recipesRepository.getFilteredRecipesByName(recName,alergies, diets).then()
+            // this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipes(recipes)})
+            this.recipesRepository.getFilteredRecipesByName(recName,alergansFilter,dietFilter).then((recipes) => {this.renderer.renderRecipes(recipes)})
         })
     }
 
@@ -114,21 +116,21 @@ class EventsHandler {
             let newIng = { name: ingName.val(), portion: ingPortion.val() };
             this.recipesRepository.addIng(newIng);
 
-            this.render.renderIngToCreatingForm(this.recipesRepository.ingredients);
+            this.renderer.renderIngToCreatingForm(this.recipesRepository.ingredients);
             ingName.val("");
             ingPortion.val("")
         })
     }
 
     removeIngWhileCreatingRecipe() {
-        $('#ingridients').on('click', '.removeIng', (event) => {
-            let ingName = $('#ingridientCreate');
-            let ingPortion = $('#ingridientPortionCreate');
+        $('#ingredients').on('click', '.removeIng', (event) => {
+            let ingName = $(event.currentTarget).closest('.ingredient').find('.ingName');
+            let ingPortion = $(event.currentTarget).closest('.ingredient').find('.ingPortion');
 
-            let ingToRemove = { name: ingName.val(), portion: ingPortion.val() };
+            let ingToRemove = { name: ingName.text(), portion: ingPortion.text() };
             this.recipesRepository.removeIng(ingToRemove);
 
-            this.render.renderIngToCreatingForm(this.recipesRepository.ingredients);
+            this.renderer.renderIngToCreatingForm(this.recipesRepository.ingredients);
         })
     }
 

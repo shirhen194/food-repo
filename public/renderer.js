@@ -8,17 +8,18 @@ class Renderer {
             
         const source = $('#recipe-template').html();
         const template = Handlebars.compile(source)
-        const newHTML = template({recipes});
+        const newHTML = template(recipes);
         this.$recipes.append(newHTML);
+        console.log(recipes)
     }
 
     renderIngToCreatingForm(ings){
-        $('#ingridients').empty();
+        $('#ingredients').empty();
 
         const source = $('#ingrediant-template').html();
         const template = Handlebars.compile(source)
         const newHTML = template({ings});
-        $('#ingridients').append(newHTML);
+        $('#ingredients').append(newHTML);
     }
 }
 
