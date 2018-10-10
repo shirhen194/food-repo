@@ -13,19 +13,25 @@ router.use(bodyParser.urlencoded({ extended: false }));
 const Recipe = require('../models/recipeModel');
 const Comment = require('../models/commentModel');
 
-router.post('', (req,res)=>{
+router.post('', (req, res) => {
     let newComment = req.body.newComment;
     let recipeId = req.body.recipeId
 
     Comment.create(newComment, (err) => {
-        if (err) console.log(err)
+        if (err) {
+            console.log(err)
+            res.send(err)
+        }
         else {
-            Recipe.findOneAndUpdate({ _id: recipeId }, { $push: { comments: newComment._id } }, (err) => {
-                if (err) console.log(err);
-    
-                Recipe.findById(recipeId).populate('comments').exec((err, recipe) => {
-                    res.send(recipe)
-                })
+            Recipe.findOneAndUpdate({ _id: recipeId }, { $push: { comments: newComment._id } }, function (err, recipes) {
+                if (err) {
+                    res.status(500).send("didnt deletee from model")
+                }
+                else {
+                    Recipe.findById(recipeId).populate('comments').exec((err, recipe) => {
+                        res.send(recipe)
+                    })
+                }
             })
         }
     })

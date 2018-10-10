@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://localhost/foodMoodDB', function () {
     console.log("DB connection established!!!");
 })
@@ -21,22 +22,9 @@ router.get('', function (req, res) {
 });
 
 router.post('', function (req, res) {
-    console.log(req.body)
-    let newRecipe = req.body.newRecipe
-    Recipe.create({
-        name: newRecipe[name],
-        img: newRecipe[img],
-        ingredients: newRecipe[ingredients],
-        directions: newRecipe[directions],
-        prepTime: newRecipe[prepTime],
-        cookingTime:newRecipe[cookingTime] ,
-        totalTime: newRecipe[totalTime],
-        comments: [],
-        youtubeUrl: newRecipe[youtubeUrl],
-        diet: newRecipe[diet],
-        alergans: newRecipe[alergans]
-    }, (err, resipe) => {
-        console.log(recipe)
+    let newRecipe = JSON.parse(req.body.newRecipe);
+    
+    Recipe.create(newRecipe, (err, recipe) => {
         if (err) console.log(err)
         else {
             Recipe.find({}).populate('comments').exec(function (err, recipes) {
@@ -44,12 +32,37 @@ router.post('', function (req, res) {
                     console.error(err);
                     res.send(err)
                 } else {
-                    res.send(recipes)
+                    console.log(recipes)
+                    res.send(recipe)
                 }
             });
         }
     })
 });
 
+router.get('/:recName/:alergies/:diets', function (req, res) {
+    const recName = req.params.recName;
+    const alergies = req.params.alergies;
+    const diets = req.params.diets;
+    
+    Recipe.find({
+        $and: [
+            { recName },
+            { alergies },
+            { diets }
+        ]
+    }).populate('comments').exec(function (err, recipes) {
+        if (err) console.error(err);
+        else res.send(recipes)
+    });
+});
+
+
+
+sushi= new Recipe ({name: "sushi"})
+sushi.save( function (err, rslt){
+    if(err) { return console.error(err); }
+    console.log(rslt);
+  });
 
 module.exports = router
