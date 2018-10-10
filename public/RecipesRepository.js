@@ -19,6 +19,14 @@ class RecipesRepository {
         })
     }
 
+    getFilteredRecipesByName(recName,alergies, diets){
+            let recName="name:"+recName
+            let alergies="alergans:"+alergies
+            let diets="diet:"+diets
+
+            $.get(`/recipes/${recName}/${alergies}/${diets}`)
+    }
+
     addAComment(newComment, recipeId){
         return $.post('/comments', {newComment: newComment, recipeId: recipeId}).then((recipe)=>{
         })

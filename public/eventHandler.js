@@ -16,13 +16,13 @@ class EventsHandler {
             let recipe = {
                 name: $('#recipeNameCreate').val(),
                 img: $('#imgCreate').val(),
-                ingridiant: this.recipesRepository.ingredients,
+                ingredients: this.recipesRepository.ingredients,
                 directions: $('#directionsCreate').val(),
                 prepTime: JSON.parse($('#prepTimeCreate').val()),
                 cookingTime: JSON.parse($('#cookingTimeCreate').val()),
                 youtubeUrl: $('#youtubeUrlCreate').val(),
-                diets: [],
-                alergies: []
+                diet: [],
+                alergans: []
             }
 
             //adds total time to the object
@@ -31,13 +31,13 @@ class EventsHandler {
             //adds to the object only if the checkbox was checked    
             for (let i of dieats) {
                 if (i.prop('checked')) {
-                    recipe.diets.push(i.val())
+                    recipe.diet.push(i.val())
                 }
             }
 
             for (let i of alergies) {
                 if (i.prop('checked')) {
-                    recipe.alergies.push(i.val())
+                    recipe.alergans.push(i.val())
                 }
             }
 
@@ -58,36 +58,57 @@ class EventsHandler {
         $(".Get-recipes").on('click', function () {
             let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q="
             //first we take the q input! which is the recipe name:
-            q = $("#recipe-input").val()
+            let q = $("#recipe-input").val()
             if ($('input[value="gluten"]').is(':checked')) {
-                url += "&Health=" + gluten - free
+                url += "&Health=gluten-free"
             }
             if ($('input[value="tree-nut"]').is(':checked')) {
-                url += "&Health=" + tree - nut - free
+                url += "&Health=tree-nut-free"
             }
             if ($('input[value="peanuts"]').is(':checked')) {
-                url += "&Health=" + peanut - free
+                url += "&Health=peanut-free"
             }
             if ($('input[value="dairy"]').is(':checked')) {
-                url += "&Health=" + dairy - free
+                url += "&Health=dairy-free"
             }
             if ($('input[value="vegan"]').is(':checked')) {
-                url += "&Health=" + vegan
+                url += "&Health=vegan"
             }
             if ($('input[value="vegetarian"]').is(':checked')) {
-                url += "&health=" + vegetarian
+                url += "&health=vegetarian"
             }
             if ($('input[value="high-protein"]').is(':checked')) {
-                url += "&Diet=" + high - protein
+                url += "&Diet=high-protein"
             }
             if ($('input[value="low-sugar"]').is(':checked')) {
-                url += "&Health=" + low - sugar
+                url += "&Health=low-sugar"
             }
 
             let ingredients = $(".toggle-ingredients-input").val()
 
+            //filter database
+            let alergansFilter =[]
+            let dietFilter=[]
+            let recName = $("#recipe-input").val()
+
+            let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#low-sugar-checkbox')];
+            let alergies = [$('#gluten-checkbox"'), $('#tree-nut-checkbox'), $('#peanuts-checkbox'), $('#dairy-checkbox')];
+
+            for (let i of alergies) {
+                if (i.checked) {
+                    alergansFilter.push(""+i.val()+"")
+                }
+            }
+
+            for (let i of diets) {
+                if (i.checked) {
+                    dietFilter.push(""+i.val()+"")
+                }
+            }
+        
             //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
             this.recipesApiRepository.getRecipesApi(url).then((recipeis) => { })
+            this.recipesRepository.getFilteredRecipesByName(recName,alergies, diets).then()
         })
     }
 
