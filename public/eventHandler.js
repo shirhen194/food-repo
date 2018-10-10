@@ -44,7 +44,7 @@ class EventsHandler {
             let newRecipe = JSON.stringify(recipe)
 
             this.recipesRepository.addARecipe({newRecipe: newRecipe}).then(()=>{
-            this.renderer.renderRecipes(this.recipesRepository.currentRecipe);
+            this.renderer.renderRecipe(this.recipesRepository.currentRecipe);
             this.recipesRepository.removeAllIng();
             })
         })
@@ -102,8 +102,8 @@ class EventsHandler {
             }
         
             //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
-            // this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipes(recipes)})
-            this.recipesRepository.getFilteredRecipesByName(recName,alergansFilter,dietFilter).then((recipes) => {this.renderer.renderRecipes(recipes)})
+            // this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipe(recipes)})
+            this.recipesRepository.getFilteredRecipesByName(recName,alergansFilter,dietFilter).then((recipes) => {this.renderer.renderRecipe(recipes)})
         })
     }
 
