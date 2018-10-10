@@ -12,6 +12,9 @@ class EventsHandler {
             let dieats = [$('#veganCreate'), $('#vegetarianCreate'), $('#high-proteinCreate'), $('#low-sugarCreate')];
             let alergies = [$('#gluten-freeCreate'), $('#dairy-freeCreate'), $('#peanutsCreate'), $('#treenutsCreate')];
 
+            let youtubeUrl = $('#youtubeUrlCreate').val()
+            let embedYoutube = youtubeUrl.replace('watch?v=', 'embed/')
+            console.log(embedYoutube);
             //creats object with all the variables
             let recipe = {
                 name: $('#recipeNameCreate').val(),
@@ -20,9 +23,9 @@ class EventsHandler {
                 directions: $('#directionsCreate').val(),
                 prepTime: JSON.parse($('#prepTimeCreate').val()),
                 cookingTime: JSON.parse($('#cookingTimeCreate').val()),
-                youtubeUrl: $('#youtubeUrlCreate').val(),
-                diets: [],
-                alergies: []
+                youtubeUrl: embedYoutube,
+                diet: [],
+                alergans: []
             }
 
             //adds total time to the object
@@ -31,19 +34,21 @@ class EventsHandler {
             //adds to the object only if the checkbox was checked    
             for (let i of dieats) {
                 if (i.prop('checked')) {
-                    recipe.diets.push(i.val())
+                    recipe.diet.push(i.val())
                 }
             }
 
             for (let i of alergies) {
                 if (i.prop('checked')) {
-                    recipe.alergies.push(i.val())
+                    recipe.alergans.push(i.val())
                 }
             }
+            console.log(recipe)
 
-            this.recipesRepository.addARecipe(resipes).then(()=>{
+            this.recipesRepository.addARecipe(recipe).then(()=>{
             this.render.renderRecipes(this.recipesRepository.recipes);
             this.recipesRepository.removeAllIng();
+            console.log(this.recipesRepository.recipes)
             })
         })
     }
@@ -108,10 +113,10 @@ class EventsHandler {
 
     removeIngWhileCreatingRecipe() {
         $('#ingridients').on('click', '.removeIng', (event) => {
-            let ingName = $('#ingridientCreate');
-            let ingPortion = $('#ingridientPortionCreate');
+            let ingName = $(event.currentTarget).closest('.ingridient').find('.ingName');
+            let ingPortion = $(event.currentTarget).closest('.ingridient').find('.ingPortion');
 
-            let ingToRemove = { name: ingName.val(), portion: ingPortion.val() };
+            let ingToRemove = { name: ingName.text(), portion: ingPortion.text() };
             this.recipesRepository.removeIng(ingToRemove);
 
             this.render.renderIngToCreatingForm(this.recipesRepository.ingredients);

@@ -16,6 +16,8 @@ class RecipesRepository {
     addARecipe(newRecipe){
         return $.post('/recipes', {newRecipe: newRecipe}).then((recipes)=>{
             this.recipes = recipes;
+            console.log(newRecipe)
+            console.log(recipe)
         })
     }
 
@@ -30,7 +32,11 @@ class RecipesRepository {
     }
 
     removeIng(ingToBeRemoved){
-        this.ingredients.splice(this.ingredients.indexOf(ingToBeRemoved), 1)
+        for(let i of this.ingredients){
+            if(i.name == ingToBeRemoved.name && i.portion == ingToBeRemoved.portion){
+                this.ingredients.splice(this.ingredients.indexOf(i), 1)
+            }    
+        }
     }
     //when the recipe is complite and added to the data base the ingredients will be removed
     removeAllIng(){

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/spacebookDB', function () {
+mongoose.connect('mongodb://localhost/foodMoodDB', function () {
     console.log("DB connection established!!!");
 })
 
