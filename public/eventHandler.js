@@ -57,7 +57,7 @@ class EventsHandler {
     }
 
     sendCriterias() {
-        $(".Get-recipes").on('click', function () {
+        $(".Get-recipes").on('click', ()=> {
             //filter Api
             //first we take the q input! which is the recipe name:
             let q = $("#recipe-input").val()
@@ -81,13 +81,16 @@ class EventsHandler {
 
             let ingredients = $(".toggle-ingredients-input").val()
 
+
+            url+="&from=0&to=30&app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc"
+
             //filter database
             let alergansFilter =[]
             let dietFilter=[]
             let recName = $("#recipe-input").val()
 
             let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#low-sugar-checkbox')];
-            let alergies = [$('#gluten-checkbox"'), $('#tree-nut-checkbox'), $('#peanuts-checkbox'), $('#dairy-checkbox')];
+            let alergies = [$("#gluten-checkbox"), $('#tree-nut-checkbox'), $('#peanuts-checkbox'), $('#dairy-checkbox')];
 
             for (let i of alergies) {
                 if (i.checked) {
@@ -100,10 +103,13 @@ class EventsHandler {
                     dietFilter.push(""+i.val()+"")
                 }
             }
-        
+
+            let stringDiet = JSON.stringify(dietFilter)
+            let stringAlergans = JSON.stringify(alergansFilter)
+            
             //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
-            // this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipe(recipes)})
-            this.recipesRepository.getFilteredRecipesByName(recName,alergansFilter,dietFilter).then((recipes) => {this.renderer.renderRecipe(recipes)})
+            this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipesFromApi(recipes)}).fail(()=> console.log("didnt get from api"))
+            this.recipesRepository.getFilteredRecipesByName(recName,stringAlergans,stringDiet).then((recipes) => {this.renderer.renderRecipesfromDb(recipes)}).fail(()=> console.log("didnt get from api")).fail(()=> console.log("didnt get from database"))
         })
     }
 

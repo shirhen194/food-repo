@@ -30,6 +30,7 @@ router.post('', function (req, res) {
             Recipe.find({}).populate('comments').exec(function (err, recipes) {
                 if (err) {
                     console.error(err);
+
                 } else {
                     console.log(recipes)
                     res.send(recipe)
@@ -41,14 +42,16 @@ router.post('', function (req, res) {
 
 router.get('/:recName/:alergies/:diets', function (req, res) {
     const recName = req.params.recName;
-    const alergies = req.params.alergies;
-    const diets = req.params.diets;
+    const alergies = JSON.parse(req.params.alergies);
+    const diets = JSON.parse(req.params.diets);
+    
+    console.log(recName + alergies + diets)
     
     Recipe.find({
         $and: [
-            { recName },
-            { alergies },
-            { diets }
+            { name: {recName} },
+            { alergans: alergies },
+            { diet: diets }
         ]
     }).populate('comments').exec(function (err, recipes) {
         if (err) console.error(err);
@@ -58,10 +61,10 @@ router.get('/:recName/:alergies/:diets', function (req, res) {
 
 
 
-sushi= new Recipe ({name: "sushi"})
-sushi.save( function (err, rslt){
-    if(err) { return console.error(err); }
-    console.log(rslt);
-  });
+// sushi= new Recipe ({name: "sushi"})
+// sushi.save( function (err, rslt){
+//     if(err) { return console.error(err); }
+//     console.log(rslt);
+// });
 
 module.exports = router

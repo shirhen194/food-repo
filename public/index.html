@@ -143,6 +143,10 @@
     <div class="recipes"></div>
     <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
 
+        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
+        <div class="recipesApi"></div>
+        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
+
     <!--מתכון אחרי הוספה לכאן מגיע -->
     <div class="recipe"></div>
     <!--מתכון אחרי הוספה לכאן מגיע -->
@@ -150,10 +154,10 @@
     <!-- render recipe -->
     <script id="recipe-template" type="text/x-handlebars-template">
             <h3>{{name}}</h3>
-            <img src="{{img}}">
-            <p>Prep-time: {{prepTime}} </p>
-            <p>Cooking-time: {{cookingTime}} </p>
-            <p>Total-time: {{totalTime}} </p>
+            <img src="{{img}}" width="30px" height="30px">
+            <p>Prep-time: {{prepTime}} minutes</p>
+            <p>Cooking-time: {{cookingTime}} minutes</p>
+            <p>Total-time: {{totalTime}} minutes</p>
             <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
             <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
             Ingredients:
@@ -184,25 +188,29 @@
             <p>Prep-time: {{prepTime}} </p>
             <p>Cooking-time: {{cookingTime}} </p>
             <p>Total-time: {{totalTime}} </p>
-            <p>Alergans: {{alergans}}</p>
-            <p>Diets: {{diet}}</p>
+            <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
+            <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
             Ingredients:
             <ul> 
-                {{#each ingridiant}}
-                <li>{{name}} - {{portion}}</li>
+                {{#each ingredients}}
+                <li>{{this.name}} - {{this.portion}}</li>
                 {{/each}}
             </ul>
             <p>directions: {{directions}}</p>
         {{/each}}
     </script>
 
-    <script id="ingrediant-template" type="text/x-handlebars-template">
-        {{#each ings}}
-        <li class='ingredient'>
-            <button class='btn btn-danger removeIng'>remove</button>
-                <span class="ingName">{{name}}</span>: 
-                <span class="ingPortion"> {{portion}}</span>  
-        </li>
+    <!-- render recipes from Api-->
+
+    
+    <script id="recipesApi-template" type="text/x-handlebars-template">
+        {{#each hits}}
+            <h3>{{this.recipe.label}}</h3>
+            <img src="{{this.recipe.image}}">
+            <p>Total-time: {{this.recipe.totalTime}} </p>
+            <p>HealthLabels: {{#each this.recipe.healthLabels}}{{this}}, {{/each}}</p>
+            <p>dietLabels: {{#each this.recipe.dietLabels}}{{this}}, {{/each}}</p>
+            <iframe src="{{this.recipe.url}}" height="200" width="300"></iframe>
         {{/each}}
     </script>
 

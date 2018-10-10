@@ -14,6 +14,7 @@ let eventsHandler = new EventsHandler(recipesRepository, renderer, recipesApiRep
 
 eventsHandler.ToggleIngredients();
 eventsHandler.addRecipe();
+eventsHandler.sendCriterias()
 eventsHandler.addIngWhileCreatingRecipe()
 eventsHandler.removeIngWhileCreatingRecipe()
 // eventsHandler.getRecipies()
