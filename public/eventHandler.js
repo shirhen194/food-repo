@@ -11,20 +11,24 @@ class EventsHandler {
             //finds all the checkboxes
             let dieats = [$('#veganCreate'), $('#vegetarianCreate'), $('#high-proteinCreate'), $('#low-sugarCreate')];
             let alergies = [$('#gluten-freeCreate'), $('#dairy-freeCreate'), $('#peanutsCreate'), $('#treenutsCreate')];
+            
+            let directions = $('#directionsCreate').val();
+            let directionsArr = directions.explode("\n");
+
 
             //creats object with all the variables
             let recipe = {
                 name: $('#recipeNameCreate').val(),
                 img: $('#imgCreate').val(),
                 ingredients: this.recipesRepository.ingredients,
-                directions: $('#directionsCreate').val(),
+                directions: directionsArr,
                 prepTime: parseInt($('#prepTimeCreate').val()),
                 cookingTime: parseInt($('#cookingTimeCreate').val()),
                 youtubeUrl: $('#youtubeUrlCreate').val(),
                 diet: [],
                 alergans: []
             }
-
+            console.log(recipe.directions)
             //adds total time to the object
             recipe.totalTime = recipe.prepTime + recipe.cookingTime
 
