@@ -36,5 +36,11 @@ router.post('', function (req, res) {
     })
 });
 
+router.get('', function (req, res) {
+    Recipe.find({}).populate('comments').exec(function (err, recipes) {
+        if (err)  console.error(err);
+        else res.send(recipes)
+    });
+});
 
 module.exports = router

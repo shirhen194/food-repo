@@ -56,33 +56,26 @@ class EventsHandler {
 
     sendCriterias() {
         $(".Get-recipes").on('click', function () {
-            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q="
+            //filter Api
             //first we take the q input! which is the recipe name:
             let q = $("#recipe-input").val()
-            if ($('input[value="gluten"]').is(':checked')) {
-                url += "&Health=gluten-free"
+            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q="+q
+
+
+            let health=[$('input[value="gluten-free"]'),$('input[value="tree-nut-free"]'),$('input[value="peanut-free"]'),
+            $('input[value="dairy-free"]'),$('input[value="vegan"]'), $('input[value="vegetarian"]'),
+            $('input[value="low-sugar"]')]
+
+            for (let i of health) {
+                if (i.is(':checked')) {
+                    url += "&Health="+i.val()
+                }
             }
-            if ($('input[value="tree-nut"]').is(':checked')) {
-                url += "&Health=tree-nut-free"
-            }
-            if ($('input[value="peanuts"]').is(':checked')) {
-                url += "&Health=peanut-free"
-            }
-            if ($('input[value="dairy"]').is(':checked')) {
-                url += "&Health=dairy-free"
-            }
-            if ($('input[value="vegan"]').is(':checked')) {
-                url += "&Health=vegan"
-            }
-            if ($('input[value="vegetarian"]').is(':checked')) {
-                url += "&health=vegetarian"
-            }
+
             if ($('input[value="high-protein"]').is(':checked')) {
                 url += "&Diet=high-protein"
             }
-            if ($('input[value="low-sugar"]').is(':checked')) {
-                url += "&Health=low-sugar"
-            }
+
 
             let ingredients = $(".toggle-ingredients-input").val()
 
