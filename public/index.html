@@ -12,7 +12,61 @@
 </head>
 
 <body>
-    
+
+    <div id="container add">
+        Recipe name: <input type="text" class="form-control" id="recipeNameCreate" placeholder="Enter recipe name here" />
+        <br>
+        Image: <input type="text" class="form-control" id="imgCreate" placeholder="Enter image URL here" />
+        <br>
+        Ingridiants: 
+        <input type="text" class="form-control" id="ingridientCreate" placeholder="Enter ingrediant here" />
+        <input type="text" class="form-control" id="ingridientPortionCreate" placeholder="Enter portion here" />
+        <button type="button" id="addIngredients" class="btn btn-primary">ADD INGRIDIENT</button>
+        <ul id="ingridients"></ul>
+        <br>
+        Directions: <input type="text" class="form-control" id="directionsCreate" placeholder="Entere the directions of the recipe" />
+        <br>
+        Preperation time: <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
+        <br>
+        Cooking time: <input type="number" class="form-control" id="cookingTimeCreate" placeholder="" />
+        <br>
+        *enter the time in minutes
+        <br>
+        Youtube URL<input type="text" class="form-control" id="youtubeUrlCreate" placeholder="If you have a youtube video instruction add the Url here." />
+        <br>
+        Diets:
+        
+        <input type="checkbox" id="veganCreate" name="feature" value="vagan" />
+        <label for="vegan">Vegan</label>
+        
+        <input type="checkbox" id="vegetarianCreate" name="feature" value="vegetarian" />
+        <label for="vegetarian">Vegetarian</label>
+        
+        <input type="checkbox" id="high-proteinCreate" name="feature" value="high-protein" />
+        <label for="high-protein">High-Protein</label>
+        
+        <input type="checkbox" id="low-sugarCreate" name="feature" value="low-sugar" />
+        <label for="low-sugar">Low-Sugar</label>
+        <br>
+        Alergies:
+        
+        <input type="checkbox" id="gluten-freeCreate" name="feature" value="gluten-free" />
+        <label for="gluten-free">Gluten-Free</label>
+        
+        <input type="checkbox" id="dairy-freeCreate" name="feature" value="dairy-free" />
+        <label for="dairy-free">Dairy-Free</label>
+        
+        <input type="checkbox" id="peanutsCreate" name="feature" value="peanuts" />
+        <label for="peanuts">Peanuts</label>
+        
+        <input type="checkbox" id="treenutsCreate" name="feature" value="treenuts" />
+        <label for="treenuts">treenuts</label>
+        <br>
+
+        <button type="button" id="addRecipe" class="btn btn-primary">ADD RECIPE</button>
+    </div>
+
+
     <div class="container search">
         <button type="button" class="btn search-by-name">Search by recipe name</button>
         <button type="button" class="btn search-by-ingredients">Search by ingredients</button>
@@ -72,10 +126,39 @@
         </form>
     </div>
 
+    <div class="recipes"></div>
 
+    <script id="recipe-template" type="text/x-handlebars-template">
+        {{#each recipes}}
+            <h3>{{name}}</h3>
+            <img src="{{img}}">
+            <p>Prep-time: {{prepTime}} </p>
+            <p>Cooking-time: {{cookingTime}} </p>
+            <p>Total-time: {{totalTime}} </p>
+            <p>Alergies: {{alergies}}</p>
+            <p>Diets: {{diets}}</p>
+            Ingredients:
+            <ul> 
+                {{#each ingridiant}}
+                <li>{{name}} - {{portion}}</li>
+                {{/each}}
+            </ul>
+            <p>directions: {{directions}}</p>
+        {{/each}}
+    </script>
+
+    <script id="ingrediant-template" type="text/x-handlebars-template">
+        {{#each ings}}
+        <li class='ingridient'>
+            <button class='btn btn-danger removeIng'>remove</button>
+                <span class="ingName">{{name}}</span>: 
+                <span class="ingPortion"> {{portion}}</span>  
+        </li>
+        {{/each}}
+    </script>
 
     <script src="jquery/dist/jquery.min.js" type="text/javascript"></script>
-    <script src="handlebars/dist/handlebars.min.js" type="text/javascript"></script>
+    <script src=".\handlebars\dist\handlebars.js" type="text/javascript"></script>
     <script src="main.js" type="module"></script>
 </body>
 

@@ -10,4 +10,4 @@ class RecipesApiRepository {
 
 }
 
-export default RecipesRepository
+export default RecipesApiRepository
