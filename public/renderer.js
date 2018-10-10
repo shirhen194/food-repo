@@ -1,24 +1,25 @@
 class Renderer {
     constructor() {
-      this.$recipes = $('.recipes')
+      this.$recipe = $('.recipe')
     }
 
-    renderRecipes(recipes){        
-        this.$recipes.empty();
+    renderRecipe(recipe){        
+        this.$recipe.empty();
             
         const source = $('#recipe-template').html();
         const template = Handlebars.compile(source)
-        const newHTML = template({recipes});
-        this.$recipes.append(newHTML);
+        const newHTML = template(recipe);
+        this.$recipe.append(newHTML);
+        console.log(recipe)
     }
 
     renderIngToCreatingForm(ings){
-        $('#ingridients').empty();
+        $('#ingredients').empty();
 
         const source = $('#ingrediant-template').html();
         const template = Handlebars.compile(source)
         const newHTML = template({ings});
-        $('#ingridients').append(newHTML);
+        $('#ingredients').append(newHTML);
     }
 }
 
