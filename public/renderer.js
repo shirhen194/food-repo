@@ -10,7 +10,6 @@ class Renderer {
         const template = Handlebars.compile(source)
         const newHTML = template(recipe);
         this.$recipe.append(newHTML);
-        console.log(recipe)
     }
 
     renderIngToCreatingForm(ings){

@@ -13,15 +13,14 @@ class EventsHandler {
             let alergies = [$('#gluten-freeCreate'), $('#dairy-freeCreate'), $('#peanutsCreate'), $('#treenutsCreate')];
             
             let directions = $('#directionsCreate').val();
-            let directionsArr = directions.explode("\n");
-
+            let directionsArr = directions.split('↵')
 
             //creats object with all the variables
             let recipe = {
                 name: $('#recipeNameCreate').val(),
                 img: $('#imgCreate').val(),
                 ingredients: this.recipesRepository.ingredients,
-                directions: directionsArr,
+                directions: directions,
                 prepTime: parseInt($('#prepTimeCreate').val()),
                 cookingTime: parseInt($('#cookingTimeCreate').val()),
                 youtubeUrl: $('#youtubeUrlCreate').val(),
