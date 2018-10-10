@@ -163,6 +163,27 @@
                 {{/each}}
             </ul>
             <span>directions:<div>{{directions}}</div></span>
+
+            <div class="comments">
+                <div class="commentsForm">
+                    <input type="text" class="form-control" id="commentsUserName" placeholder="User name" />
+                    <br>
+                    <input type="text" class="form-control" id="commentsText" placeholder="Comment Here" />
+                    <br>
+                    <input type="number" class="form-control" id="commentsRating" placeholder="1-5" min="1" max="5"/>
+                    <br>
+                    <button type="button" class="addComment" class="btn btn-primary">ADD INGRIDIENT</button>
+                </div>
+                <div class="commentsContent">
+                    {{#each comments}}
+                        {{userName}}:
+                        <br>
+                        {{text}}
+                        <br>
+                        {{rating}}
+                    {{/each}}
+                </div>
+            </div>
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
