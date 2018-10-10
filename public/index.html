@@ -78,10 +78,13 @@
                 <br>
                 <div class="input-group mb-3 name-search-form">
                     <input type="text" class="form-control" id="recipe-input" placeholder="Enter recipe name..:)"
-                        aria-describedby="basic-addon2" required>
+                        required>
+                        <br>
                     <button type="button" class="btn add-ingredients">add ingredients you want?</button>
+                    <br>
                     <input type="text" class="form-control toggle-ingredients-input" id="ingredients-input" placeholder="Enter ingredient/s with comma between!"
-                        aria-describedby="basic-addon2" required>
+                         required>
+                         <div class="container">
                     <div class="allergies">Allergies:<br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" id="gluten-checkbox" value="gluten">
@@ -118,6 +121,7 @@
                             <label class="form-check-label" for="low-sugar-checkbox">low-sugar</label>
                         </div>
                     </div>
+                </div>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-primary Get-recipes">Get recipes</button>
                     </div>

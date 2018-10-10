@@ -49,7 +49,7 @@ class EventsHandler {
     }
 
     ToggleIngredients() {
-        $(".add-ingredients").on('click', '.toggle-comments', (event) => {
+        $(".add-ingredients").on('click', (event) => {
             $(".toggle-ingredients-input").toggleClass('show');
         });
     }
