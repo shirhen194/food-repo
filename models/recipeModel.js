@@ -13,7 +13,8 @@ let  recipeSchema= new Schema({
     youtubeUrl: String,
     diet: [],
     alergans: [],
-    rating: {type:Number, min:0, max:5}
+    rating: {type:Number, min:0, max:5},
+    haveYoutube: Boolean
 });
 
 const Recipe = mongoose.model('recipe', recipeSchema)

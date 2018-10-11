@@ -11,10 +11,18 @@ class EventsHandler {
             //finds all the checkboxes
             let dieats = [$('#veganCreate'), $('#vegetarianCreate'), $('#high-proteinCreate'), $('#low-sugarCreate')];
             let alergies = [$('#gluten-freeCreate'), $('#dairy-freeCreate'), $('#peanutsCreate'), $('#treenutsCreate')];
-            
+
             let directions = $('#directionsCreate').val();
             let directionsArr = directions.match(/\S.*?(?![^.!?]).!??/g);
 
+            let youtubeUrl = $('#youtubeUrlCreate').val()
+            let embedYoutube = youtubeUrl.replace('watch?v=', 'embed/')
+            let haveYoutube;
+
+            if (youtubeUrl == "") haveYoutube = false;
+            else haveYoutube = true;
+
+            console.log(embedYoutube);
             //creats object with all the variables
             let recipe = {
                 name: $('#recipeNameCreate').val(),
@@ -23,9 +31,10 @@ class EventsHandler {
                 directions: directionsArr,
                 prepTime: parseInt($('#prepTimeCreate').val()),
                 cookingTime: parseInt($('#cookingTimeCreate').val()),
-                youtubeUrl: $('#youtubeUrlCreate').val(),
+                youtubeUrl: embedYoutube,
                 diet: [],
-                alergans: []
+                alergans: [],
+                haveYoutube: haveYoutube
             }
             console.log(recipe.directions)
             //adds total time to the object
@@ -43,7 +52,6 @@ class EventsHandler {
                     recipe.alergans.push(i.val())
                 }
             }
-
             let newRecipe = JSON.stringify(recipe)
 
             this.recipesRepository.addARecipe({ newRecipe: newRecipe }).then(() => {
@@ -59,25 +67,70 @@ class EventsHandler {
         });
     }
 
-    sendCriterias() {
+    getCriteriasFromSearchByName() {
         $(".Get-recipes").on('click', () => {
-            //filter Api
-
             //first we take the q input! which is the recipe name:
             let q = $("#recipe-input").val()
             //get ingredients from client
             let ingredients = $(".toggle-ingredients-input").val()
             let ingredientsArr = ingredients.split(',');
-            for (let ingredient of ingredientsArr){
-                q+=" "+ingredient
-            }
-
-
-            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q=" + q
-
             let health = [$('input[value="tree-nut-free"]'), $('input[value="peanut-free"]'),
             $('input[value="vegan"]'), $('input[value="vegetarian"]'),
             $('input[value="sugar-conscious"]')]
+            let recName = $("#recipe-input").val()
+
+            let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#sugar-conscious-checkbox')];
+            let alergies = [$('#tree-nut-checkbox'), $('#peanuts-checkbox')];
+            this.sendCriterias(q, ingredientsArr, health, diets, alergies, recName)
+        })
+    }
+
+    getCriteriasFromSearchByName() {
+        $(".Get-recipes").on('click', () => {
+            //first we take the q input! which is the recipe name:
+            let q = $("#recipe-input").val()
+            //get ingredients from client
+            let ingredients = $(".toggle-ingredients-input").val()
+            let ingredientsArr = ingredients.split(',');
+            let health = [$('input[value="tree-nut-free"]'), $('input[value="peanut-free"]'),
+            $('input[value="vegan"]'), $('input[value="vegetarian"]'),
+            $('input[value="sugar-conscious"]')]
+            let recName = $("#recipe-input").val()
+
+            let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#sugar-conscious-checkbox')];
+            let alergies = [$('#tree-nut-checkbox'), $('#peanuts-checkbox')];
+            this.sendCriterias(q, ingredientsArr, health, diets, alergies, recName)
+        })
+    }
+
+    getCriteriasFromSearchByIng() {
+        $(".Get-recipes-By-Ing").on('click', () => {
+            let q 
+            //get ingredients from client
+            let ingredients = $('#ingredients-input-search').val()
+            console.log(ingredients)
+            let ingredientsArr = ingredients.split(',');
+            console.log(ingredientsArr)
+            let health = [$('input[value="tree-nut-free"]'), $('input[value="peanut-free"]'),
+            $('input[value="vegan"]'), $('input[value="vegetarian"]'),
+            $('input[value="sugar-conscious"]')]
+            let recName 
+
+            let diets = [$('#vegan-checkbox-search-by-ign'), $('#vegetarian-checkbox-search-by-ign'), $('#high-protein-checkbox-search-by-ign'), $('#sugar-conscious-checkbox-search-by-ign')];
+            let alergies = [$('#tree-nut-checkbox-search-by-ign'), $('#peanuts-checkbox-search-by-ign')];
+            this.sendCriterias(q, ingredientsArr, health, diets, alergies, recName)
+        })
+    }
+
+
+    sendCriterias(q, ingredientsArr, health, diets, alergies, recName) {
+        // $(".Get-recipes").on('click', () => {
+            //filter Api
+            for (let ingredient of ingredientsArr) {
+               q += " " + ingredient
+            }
+            
+            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q=" + q
 
             for (let i of health) {
                 if (i.is(':checked')) {
@@ -94,10 +147,6 @@ class EventsHandler {
             //filter database
             let alergansFilter = []
             let dietFilter = []
-            let recName = $("#recipe-input").val()
-
-            let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#sugar-conscious-checkbox')];
-            let alergies = [$('#tree-nut-checkbox'), $('#peanuts-checkbox')];
 
             for (let i of alergies) {
                 if (i.is(':checked')) {
@@ -114,44 +163,17 @@ class EventsHandler {
             //stringify for the get request parameter
             let stringDiet = JSON.stringify(dietFilter)
             let stringAlergans = JSON.stringify(alergansFilter)
-
-
-
-            //לעשות דברים קולים עם המרכיבים שמקבלים מהapi
-            // let ingredientCount = 0
-            // function getIngredients(recipes) {
-
-            //     for (let i in recipes.hits) {
-            //         let apiIngredientsArr = recipes.hits[i].recipe.ingredientLines
-            //         console.log(apiIngredientsArr)
-            //         for (let ingredientfromApi of apiIngredientsArr) {
-            //             for (let ingredientRecipe of ingredientsArr) {
-            //                 ingredientfromApi.toLowerCase();
-            //                 ingredientRecipe.toLowerCase();
-            //                 if (ingredientfromApi.search(ingredientRecipe) !== -1) {
-            //                     ingredientCount++
-            //                 }
-            //             }
-            //         }
-
-            //         if (ingredientCount != ingredientsArr.length) {
-            //             recipes.hits.splice(i, 1)
-            //         }
-
-            //         ingredientCount=0
-            //     }
-
-            //     return recipes
-            // }
-
+            let stringIng = JSON.stringify(ingredientsArr)
 
             // חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
             this.recipesApiRepository.getRecipesApi(url).then((recipes) => {
-                    this.renderer.renderRecipesFromApi(recipes)
+                this.renderer.renderRecipesFromApi(recipes)
             }).fail(() => console.log("didnt get from api or the function didnt work"))
-            this.recipesRepository.getFilteredRecipesByName(recName, stringAlergans, stringDiet).then((recipes) => { this.renderer.renderRecipesfromDb(recipes) }).fail(() => console.log("didnt get from api")).fail(() => console.log("didnt get from database"))
-        console.log(url)
-        })
+            this.recipesRepository.getFilteredRecipesByName(recName, stringAlergans, stringDiet, stringIng).then((recipes) => {
+                this.renderer.renderRecipesfromDb(recipes)
+                console.log(recipes)
+            }).fail(() => console.log("didnt get from api")).fail(() => console.log("didnt get from database"))
+        // })
     }
 
     //while creating recepie you need to be able to add multiple ingredients with different pmeasurmments to each one
@@ -210,18 +232,18 @@ class EventsHandler {
         $('.recipe').on('click', '.removeRecipe', (event) => {
             let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
 
-            this.recipesRepository.removeRecipe(recipeId).then((data)=>{
+            this.recipesRepository.removeRecipe(recipeId).then((data) => {
                 this.renderer.$recipe.empty()
             })
         })
     }
 
-    handleRemovecomment(){
+    handleRemovecomment() {
         $('.recipe').on('click', '.removeComment', (event) => {
             let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
             let commentId = $(event.currentTarget).closest('.commentsContent').data().id
 
-            this.recipesRepository.removeComment(recipeId, commentId).then(()=>{
+            this.recipesRepository.removeComment(recipeId, commentId).then(() => {
                 this.renderer.renderRecipe(this.recipesRepository.currentRecipe)
             })
         })

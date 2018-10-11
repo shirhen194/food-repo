@@ -32,7 +32,6 @@ router.post('', function (req, res) {
                     res.status(500).send("didnt deletee from model")
 
                 } else {
-                    console.log(recipes)
                     res.send(recipe)
                 }
             });
@@ -40,7 +39,7 @@ router.post('', function (req, res) {
     })
 });
 
-router.delete('/:recipeId', (req,res)=>{
+router.delete('/:recipeId', (req, res) => {
     let id = req.params.recipeId
 
     Recipe.findById(id, (err, recipe) => {
@@ -58,21 +57,40 @@ router.delete('/:recipeId', (req,res)=>{
     })
 })
 
-router.get('/:recName/:alergies/:diets', function (req, res) {
+router.get('/:recName/:alergies/:diets/:ingredients', function (req, res) {
     const recName = req.params.recName;
     const alergies = JSON.parse(req.params.alergies);
     const diets = JSON.parse(req.params.diets);
+    const ingredients = JSON.parse(req.params.ingredients);
 
-    console.log(recName + alergies + diets)
+    console.log(ingredients)
 
-    Recipe.find({name: recName ,alergans: alergies ,diet: diets })
-    .populate('comments').exec(function (err, recipes) {
+    Recipe.find({ name: recName, alergans: alergies, diet: diets })
+        .populate('comments').exec(function (err, recipes) {
             if (err) {
                 console.error(err)
-                res.status(500).send("didnt deletee from model")}
+                res.status(500).send("didnt deletee from model")
+            }
             else {
-                console.log(recipes)
-                res.send(recipes)}
+                let ingCounter = 0;
+                for (let i of ingredients) {
+                    if (i) {
+                        for (let t of recipes) {
+                            for (let x of t.ingredients) {
+                                if (i != x.name) {
+                                    ingCounter++;
+                                }
+                            }
+
+                            if (ingCounter == t.ingredients.length) {
+                                recipes.splice(recipes.indexOf(t), 1)
+                            }
+                            ingCounter = 0;
+                        }
+                    }
+                }
+                res.send(recipes)
+            }
         });
 });
 

@@ -38,6 +38,7 @@
         Diets:
 
         <input type="checkbox" id="veganCreate" name="feature" value="vagan" />
+
         <label for="vegan">vegan</label>
 
         <input type="checkbox" id="vegetarianCreate" name="feature" value="vegetarian" />
@@ -121,6 +122,57 @@
         </form>
     </div>
 
+    <div class="container ingredient-search-screen">
+        <form class="header-form">
+            <div class="form-group">
+                <h1>Search by ingredients</h1>
+                <br>
+                <div class="input-group mb-3 name-search-form">
+                    <input type="text" class="form-control" id="ingredients-input-search" placeholder="Enter ingredient/s with comma between!" required>
+                    <div class="container">
+                        <div class="allergies">Allergies:<br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox-search-by-ign"
+                                    value="tree-nut-free">
+                                <label class="form-check-label" for="tree-nut-checkbox-search-by-ign">tree-nut-free</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox-search-by-ign"
+                                    value="peanut-free">
+                                <label class="form-check-label" for="peanuts-checkbox-search-by-ign">peanut-fre\e</label>
+                            </div>
+                            
+                        </div>
+                        <div class="diet">Diet:<br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="vegan-checkbox-search-by-ign"
+                                    value="vegan">
+                                <label class="form-check-label" for="vegan-checkbox-search-by-ign">vegan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox-search-by-ign"
+                                    value="vegetarian">
+                                <label class="form-check-label" for="vegetarian-checkbox-search-by-ign">vegetarian</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox-search-by-ign"
+                                    value="high-protein">
+                                <label class="form-check-label" for="high-protein-checkbox-search-by-ign">high-protein</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="feature" id="sugar-conscious-checkbox-search-by-ign"
+                                    value="sugar-conscious">
+                                <label class="form-check-label" for="sugar-conscious-checkbox-search-by-ign">sugar-conscious</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary Get-recipes-By-Ing">Get recipes</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
     <div class="recipes"></div>
@@ -151,7 +203,10 @@
                 {{/each}}
             </ul>
             <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
-
+            <br>
+            {{#if haveYoutube}}
+            <iframe class="player" allowfullscreen src="{{youtubeUrl}}" height= "390" width= "640"></iframe>
+            {{/if}}
             <div class="comments">
                 <div class="commentsForm">
                     <h4>Add a comment:</h4>
@@ -174,10 +229,8 @@
                 </div>
                 {{/each}}
             </div>
-
             <button class='btn btn-danger removeRecipe'>remove recipe</button>
-
-        </div>    
+            </div>    
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
@@ -208,6 +261,21 @@
                 {{/each}}
             </ul>
             <p>directions: {{#each directions}}{{this}} <br> {{/each}} </p>
+
+            {{#if haveYoutube}}
+            <iframe class="player" allowfullscreen src="{{youtubeUrl}}" height= "390" width= "640"></iframe>
+            {{/if}}
+            <h3>comments:</h3>
+            {{#each comments}}
+            <div class="commentsContent" data-id="{{_id}}">                    
+                {{userName}}:
+                <br>
+                {{text}}
+                <br>
+                {{rating}}
+                <button class='btn btn-danger removeComment'>remove comment</button>
+            </div>
+            {{/each}}
         {{/each}}
     </script>
 
