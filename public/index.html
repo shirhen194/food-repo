@@ -210,7 +210,7 @@
                 <li>{{this.name}} - {{this.portion}}</li>
                 {{/each}}
             </ul>
-            <p>directions: {{directions}} </p>
+            <p>directions: {{#each directions}}{{this}} <br> {{/each}} </p>
         {{/each}}
     </script>
 
