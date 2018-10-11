@@ -16,6 +16,7 @@ eventsHandler.handleRemoveRecipe()
 eventsHandler.handleAddAComment()
 eventsHandler.ToggleIngredients();
 eventsHandler.addRecipe();
+eventsHandler.sendCriterias()
 eventsHandler.addIngWhileCreatingRecipe()
 eventsHandler.removeIngWhileCreatingRecipe()
 // eventsHandler.getRecipies()

@@ -1,6 +1,9 @@
 class Renderer {
     constructor() {
       this.$recipe = $('.recipe')
+      this.$recipes = $('.recipes')
+      this.$recipesApi = $('.recipesApi')
+
     }
 
     renderRecipe(recipe){        
@@ -10,6 +13,24 @@ class Renderer {
         const template = Handlebars.compile(source)
         const newHTML = template(recipe);
         this.$recipe.append(newHTML);
+    }
+
+    renderRecipesfromDb(recipes){
+        this.$recipes.empty();
+            
+        const source = $('#recipes-template').html();
+        const template = Handlebars.compile(source)
+        const newHTML = template({recipes});
+        this.$recipes.append(newHTML);
+    }
+
+    renderRecipesFromApi(recipes){
+        this.$recipesApi.empty();
+            
+        const source = $('#recipesApi-template').html();
+        const template = Handlebars.compile(source)
+        const newHTML = template(recipes);
+        this.$recipesApi.append(newHTML);
     }
 
     renderIngToCreatingForm(ings){
