@@ -40,6 +40,24 @@ router.post('', function (req, res) {
     })
 });
 
+router.delete('/:recipeId', (req,res)=>{
+    let id = req.params.recipeId
+
+    Recipe.findById(id, (err, recipe) => {
+        if (err) console.log(err)
+        for (let i = 0; i < recipe.comments.length; i++) {
+            Comment.deleteOne({ _id: recipe.comments[i] }, (err) => {
+                if (err) console.log(err)
+                else console.log('comment deleted')
+            })
+        }
+    }).exec(() => {
+        Recipe.deleteOne({ _id: id }, (err, post) => {
+            res.send("The recipe has been deleted!")
+        })
+    })
+})
+
 router.get('/:recName/:alergies/:diets', function (req, res) {
     const recName = req.params.recName;
     const alergies = JSON.parse(req.params.alergies);
@@ -57,13 +75,5 @@ router.get('/:recName/:alergies/:diets', function (req, res) {
                 res.send(recipes)}
         });
 });
-
-
-
-// sushi= new Recipe ({name: "sushi"})
-// sushi.save( function (err, rslt){
-//     if(err) { return console.error(err); }
-//     console.log(rslt);
-// });
 
 module.exports = router

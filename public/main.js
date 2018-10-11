@@ -11,7 +11,9 @@ let recipesApiRepository = new RecipesApiRepository();
 let renderer = new Renderer();
 let eventsHandler = new EventsHandler(recipesRepository, renderer, recipesApiRepository);
 
-
+eventsHandler.handleRemovecomment()
+eventsHandler.handleRemoveRecipe()
+eventsHandler.handleAddAComment()
 eventsHandler.ToggleIngredients();
 eventsHandler.addRecipe();
 eventsHandler.sendCriterias()

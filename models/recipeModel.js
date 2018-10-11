@@ -5,7 +5,7 @@ let  recipeSchema= new Schema({
     name: String,
     img: String,
     ingredients: [],
-    directions: String,
+    directions: [],
     prepTime:Number,
     cookingTime: Number,
     totalTime:Number,
