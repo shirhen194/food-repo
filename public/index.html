@@ -135,23 +135,6 @@
     <div class="recipe"></div>
     <!--מתכון אחרי הוספה לכאן מגיע -->
 
-    <!-- script to work on the youtube Api -->
-    <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-
-        const firstScriptTag = document.getElementsByTagName('script');
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        let player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player');
-        }
-    </script>
-
     <!-- render recipe -->
     <script id="recipe-template" type="text/x-handlebars-template">
         <div class="currentRecipe" data-id="{{_id}}">   
@@ -169,7 +152,10 @@
                 {{/each}}
             </ul>
             <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
-
+            <br>
+            {{#if haveYoutube}}
+            <iframe class="player" allowfullscreen src="{{youtubeUrl}}" height= "390" width= "640"></iframe>
+            {{/if}}
             <div class="comments">
                 <div class="commentsForm">
                     <h4>Add a comment:</h4>
@@ -192,10 +178,8 @@
                 </div>
                 {{/each}}
             </div>
-
             <button class='btn btn-danger removeRecipe'>remove recipe</button>
-
-        </div>    
+            </div>    
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">

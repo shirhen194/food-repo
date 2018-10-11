@@ -14,9 +14,14 @@ class EventsHandler {
             
             let directions = $('#directionsCreate').val();
             let directionsArr = directions.match(/\S.*?(?![^.!?]).!??/g);
-
+           
             let youtubeUrl = $('#youtubeUrlCreate').val()
             let embedYoutube = youtubeUrl.replace('watch?v=', 'embed/')
+            let haveYoutube;
+
+            if (youtubeUrl == "") haveYoutube = false;
+            else haveYoutube = true;
+
             console.log(embedYoutube);
             //creats object with all the variables
             let recipe = {
@@ -28,7 +33,8 @@ class EventsHandler {
                 cookingTime: parseInt($('#cookingTimeCreate').val()),
                 youtubeUrl: embedYoutube,
                 diet: [],
-                alergans: []
+                alergans: [],
+                haveYoutube: haveYoutube
             }
             console.log(recipe.directions)
             //adds total time to the object
