@@ -68,9 +68,12 @@ class EventsHandler {
             //get ingredients from client
             let ingredients = $(".toggle-ingredients-input").val()
             let ingredientsArr = ingredients.split(',');
-            for (let ingredient of ingredientsArr){
-                q+=" "+ingredient
+            if (ingredientsArr[0].length>2){
+                for (let ingredient of ingredientsArr){
+                    q+=" "+ingredient
+                }
             }
+            
 
 
             let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q=" + q
@@ -89,7 +92,7 @@ class EventsHandler {
                 url += "&diet=high-protein"
             }
 
-            url += "&from=0&to=10&app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc"
+            url += "&from=0&to=10"
 
             //filter database
             let alergansFilter = []
@@ -182,7 +185,7 @@ class EventsHandler {
     }
 
     handleAddAComment() {
-        $('.recipe').on('click', '.addComment', (event) => {
+        $('#recipe').on('click', '.addComment', (event) => {
             let $commentUserName = $(event.currentTarget).closest('.commentsForm').find('.commentsUserName')
             let $commentText = $(event.currentTarget).closest('.commentsForm').find('.commentsText')
             let $commentRating = $(event.currentTarget).closest('.commentsForm').find('.commentsRating')
@@ -207,7 +210,7 @@ class EventsHandler {
     }
 
     handleRemoveRecipe() {
-        $('.recipe').on('click', '.removeRecipe', (event) => {
+        $('#recipe').on('click', '.removeRecipe', (event) => {
             let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
 
             this.recipesRepository.removeRecipe(recipeId).then((data)=>{
@@ -217,7 +220,7 @@ class EventsHandler {
     }
 
     handleRemovecomment(){
-        $('.recipe').on('click', '.removeComment', (event) => {
+        $('#recipe').on('click', '.removeComment', (event) => {
             let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
             let commentId = $(event.currentTarget).closest('.commentsContent').data().id
 

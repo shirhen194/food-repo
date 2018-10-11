@@ -2,185 +2,513 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>FoodBank</title>
+    <!--
+Template 2089 Meteor
+http://www.tooplate.com/view/2089-meteor
+-->
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="font-awesome-5-css\css\fontawesome-all.min.css" /> -->
-    <link rel="stylesheet" type="text/css" href="bootstrap\dist\css\bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/hero-slider.css">
+    <link rel="stylesheet" href="css/tooplate-style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="main.js" type="module"></script>
 </head>
 
 <body>
-
-    <div id="container add">
-        Recipe name: <input type="text" class="form-control" id="recipeNameCreate" placeholder="Enter recipe name here" />
-        <br>
-        Image: <input type="text" class="form-control" id="imgCreate" placeholder="Enter image URL here" />
-        <br>
-        Ingridiants:
-        <input type="text" class="form-control" id="ingridientCreate" placeholder="Enter ingrediant here" />
-        <input type="text" class="form-control" id="ingridientPortionCreate" placeholder="Enter portion here" />
-        <button type="button" id="addIngredients" class="btn btn-primary">ADD INGRIDIENT</button>
-        <ul id="ingredients"></ul>
-        <br>
-        Directions: <textarea wrap="physical" style="height: 200px" class="form-control" id="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
-
-        <br>
-        Preperation time: <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
-        <br>
-        Cooking time: <input type="number" class="form-control" id="cookingTimeCreate" placeholder="" />
-        <br>
-        *enter the time in minutes
-        <br>
-        Youtube URL<input type="text" class="form-control" id="youtubeUrlCreate" placeholder="If you have a youtube video instruction add the Url here." />
-        <br>
-        Diets:
-
-        <input type="checkbox" id="veganCreate" name="feature" value="vagan" />
-        <label for="vegan">vegan</label>
-
-        <input type="checkbox" id="vegetarianCreate" name="feature" value="vegetarian" />
-        <label for="vegetarian">vegetarian</label>
-
-        <input type="checkbox" id="high-proteinCreate" name="feature" value="high-protein" />
-        <label for="high-protein">high-protein</label>
-
-        <input type="checkbox" id="sugar-consciousCreate" name="feature" value="sugar-conscious" />
-        <label for="sugar-conscious">sugar-conscious</label>
-        <br>
-        Alergies:
-
-        <input type="checkbox" id="peanutsCreate" name="feature" value="peanut-free" />
-        <label for="peanut-free">peanut-free</label>
-
-        <input type="checkbox" id="treenutsCreate" name="feature" value="tree-nut-free" />
-        <label for="tree-nut-free">tree-nut-free</label>
-        <br>
-
-        <button type="button" id="addRecipe" class="btn btn-primary">ADD RECIPE</button>
+    <div class="header">
+        <div class="container">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand scroll-top">
+                        <div class="logo"></div>
+                    </a>
+                </div>
+                <!--/.navbar-header-->
+                <div id="main-nav" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="#" class="scroll-top">Home</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="about">Our Services</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="portfolio">Top Picks</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="yourSearches">Your Searches</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="blog">Blog</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="contact">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="scroll-link" data-id="us">About us</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.navbar-collapse-->
+            </nav>
+            <!--/.navbar-->
+        </div>
+        <!--/.container-->
     </div>
+    <!--/.header-->
 
 
+    <section class="cd-hero">
+        <ul class="cd-hero-slider autoplay">
+            <!-- 
+            <ul class="cd-hero-slider autoplay"> for slider auto play 
+            <ul class="cd-hero-slider"> for disabled auto play
+        -->
+            <li class="selected first-slide">
+                <div class="cd-full-width">
+                    <div class="tm-slide-content-div slide-caption">
+                        <span>Introduction to</span>
+                        <h2>Food Bank</h2>
+                        <p id="Appdescription"> Explore and share everyday cooking inspiration on Food Bank! </p>
+                        <div class="primary-button">
+                            <a href="#" class="scroll-link" data-id="about">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .cd-full-width -->
+            </li>
 
-    <div class="container name-search-screen">
-        <form class="header-form">
-            <div class="form-group">
-                <h1>Search by name</h1>
+            <li class="second-slide">
+                <div class="cd-full-width">
+                    <div class="tm-slide-content-div slide-caption">
+                        <span id="slide2">Thousands of recipes</span>
+                        <h2>Find the perfect meal in times of need</h2>
+                        <p>Whether you feel like munching on a pizza or preparing a dinner for valentine's - Food Bank provides
+                            meals and recipes fit for any occasion.</p>
+                        <div class="primary-button">
+                            <a href="#" class="scroll-link" data-id="about">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .cd-full-width -->
+            </li>
+
+            <li class="third-slide">
+                <div class="cd-full-width">
+                    <div class="tm-slide-content-div slide-caption">
+                        <span id="slide3">Stay Tuned</span>
+                        <h2>We're a community! (we're nice, we promise)</h2>
+                        <p id="paragraph">Add and watch recipes, start making an influence</p>
+                        <div class="primary-button">
+                            <a href="#" class="scroll-link" data-id="registration">Ayeee!</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- .cd-full-width -->
+            </li>
+        </ul>
+        <!-- .cd-hero-slider -->
+
+        <div class="cd-slider-nav">
+            <nav>
+                <span class="cd-marker item-1"></span>
+
+                <ul>
+                    <li class="selected">
+                        <a href="#0"></a>
+                    </li>
+                    <li>
+                        <a href="#0"></a>
+                    </li>
+                    <li>
+                        <a href="#0"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- .cd-slider-nav -->
+    </section>
+    <!-- .cd-hero -->
+
+    <div id="about" class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h4>Our Services</h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <button type="button" id="buttonModal1" data-toggle="modal" data-target="#myModal1">
+                        <div class="service-item first-service">
+                            <div class="icon"></div>
+                            <h4>Browse Recipes By Recipe Name</h4>
+                            <p> Access to Food Bank's massive library of recipes! our detailed search allows you to
+                                <b>filter recipes</b> based on dietary and allergy information, dish type, and more.</p>
+                        </div>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal1" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="font-size: 24px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: purple">Browse Recipes By Recipe Name</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container name-search-screen">
+                                        <form class="header-form">
+                                            <div class="form-group">
+                                                <div class="input-group mb-3 name-search-form">
+                                                    <input type="text" class="form-control" id="recipe-input" placeholder="Enter recipe name..:)" required style="display: block; width: 350px">
+                                                    <p>
+                                                        <b style="text-align: center;margin-right: 100px"></b>
+                                                        <br>
+                                                        <button type="button" class="btn add-ingredients"></button>
+                                                        <br>
+                                                        <p>
+                                                            <b style="text-align: center;margin-right: 100px">add ingredients you want?</b>
+                                                        </p>
+                                                        <input type="text" class="form-control toggle-ingredients-input" id="ingredients-input" placeholder="Enter ingredient/s with comma between!"
+                                                            required style="display: block; width: 350px">
+                                                        <div class="container" style="box-sizing: border-box">
+                                                            <br>
+                                                            <br>
+                                                            <div class="allergies">
+                                                                <br>
+                                                                <b style="color: slateblue">Allergies:</b>
+                                                                <br>
+                                                                <br>
+
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox" value="tree-nut-free">
+                                                                    <label class="form-check-label" for="tree-nut-checkbox">tree-nut-free</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox" value="peanut-free">
+                                                                    <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
+                                                                </div>
+
+                                                            </div>
+                                                            <br>
+                                                            <div class="diet">
+                                                                <b style="color: slateblue">Diet:</b>
+                                                                <br>
+                                                                <br>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="vegan-checkbox" value="vegan">
+                                                                    <label class="form-check-label" for="vegan-checkbox">vegan</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox" value="vegetarian">
+                                                                    <label class="form-check-label" for="vegetarian-checkbox">vegetarian</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox" value="high-protein">
+                                                                    <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="checkbox" name="feature" id="sugar-conscious-checkbox" value="sugar-conscious">
+                                                                    <label class="form-check-label" for="sugar-conscious-checkbox">sugar-conscious</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="input-group-append">
+                                                                <button type="button" class="btn btn-primary Get-recipes" style="background-color: mediumpurple">Get recipes</button>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                        </form>
+                                        </div>
+
+                                        <div class="recipes"></div>
+
+                                        <script id="recipes-template" type="text/x-handlebars-template">
+                                            {{#each recipes}}
+                                                <h3>{{name}}</h3>
+                                                <img src="{{img}}">
+                                                <p>Prep-time: {{prepTime}} </p>
+                                                <p>Cooking-time: {{cookingTime}} </p>
+                                                <p>Total-time: {{totalTime}} </p>
+                                                <p>Alergies: {{alergies}}</p>
+                                                <p>Diets: {{diets}}</p>
+                                                Ingredients:
+                                                <ul> 
+                                                    {{#each ingridiant}}
+                                                    <li>{{name}} - {{portion}}</li>
+                                                    {{/each}}
+                                                </ul>
+                                                <p>directions: {{directions}}</p>
+                                            {{/each}}
+                                        </script>
+
+                                        <script id="ingrediant-template" type="text/x-handlebars-template">
+                                            {{#each ings}}
+                                            <li class='ingridient'>
+                                                <button class='btn btn-danger removeIng'>remove</button>
+                                                    <span class="ingName">{{name}}</span>: 
+                                                    <span class="ingPortion"> {{portion}}</span>  
+                                            </li>
+                                            {{/each}}
+                                        </script>
+                                        <!-- add html here -->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" style=" background-color: khaki">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <button type="button" id="buttonModal2" data-toggle="modal" data-target="#myModal2">
+                        <div class="service-item second-service">
+                            <div class="icon"></div>
+                            <h4>Browse Recipes By Ingredients You Have At Home</h4>
+                            <p>For them specific food cravings, or those challenging times when you don't have much ingredients
+                                to begin with!
+                            </p>
+                        </div>
+                    </button>
+
+                    <div class="modal fade" id="myModal2" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="font-size: 24px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(192, 126, 4)">Browse Recipes By Ingredients You Have At Home</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- html -->
+                                    <div class="container ingredient-search-screen">
+                                        <form class="header-form">
+                                            <div class="form-group">
+                                                <!-- <h1>Search by ingredients</h1> -->
+                                                <br>
+                                                <div class="input-group mb-3 name-search-form">
+                                                    <input type="text" class="form-control" id="main-ingredient-input" placeholder="Enter ingredient/s with comma between!" required
+                                                        style="width: 550px">
+                                                    <div class="container">
+                                                        <br>
+                                                        <br>
+                                                        <div class="allergies">
+                                                            <br>
+                                                            <b style="color: chocolate">Allergies:</b>
+                                                            <br>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox-search-by-ign" value="tree-nut-free">
+                                                                <label class="form-check-label" for="tree-nut-checkbox-search-by-ign">tree-nut-free</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox-search-by-ign" value="peanut-free">
+                                                                <label class="form-check-label" for="peanuts-checkbox-search-by-ign">peanut-fre\e</label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="diet">
+                                                            <b style="color: chocolate">Diet:</b>
+                                                            <br>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="vegan-checkbox-search-by-ign" value="vegan">
+                                                                <label class="form-check-label" for="vegan-checkbox-search-by-ign">vegan</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox-search-by-ign" value="vegetarian">
+                                                                <label class="form-check-label" for="vegetarian-checkbox-search-by-ign">vegetarian</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox-search-by-ign" value="high-protein">
+                                                                <label class="form-check-label" for="high-protein-checkbox-search-by-ign">high-protein</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" name="feature" id="sugar-conscious-checkbox-search-by-ign" value="sugar-conscious">
+                                                                <label class="form-check-label" for="sugar-conscious-checkbox-search-by-ign">sugar-conscious</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-primary Get-recipes-By-Ing">Get recipes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <button type="button" id="buttonModal3" data-toggle="modal" data-target="#myModal3">
+                        <div class="service-item third-service">
+                            <div class="icon"></div>
+                            <h4>Add a masterpiece!</h4>
+                            <p>We wish to grow and inspire. That's why you can
+                                <b>share your ideas</b> with us all, and even registrate if you wish.</p>
+                            <br>
+                            <br>
+                        </div>
+                    </button>
+
+                    <!-- fix modal -->
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal3" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title" style="font-size: 24px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: rgb(0, 128, 128)">Add A New Recipe</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div id="container add">
+                                        <b>Recipe name:</b>
+                                        <input type="text" class="form-control" id="recipeNameCreate" placeholder="Enter recipe name here" />
+                                        <br> Image:
+                                        <input type="text" class="form-control" id="imgCreate" placeholder="Enter image URL here" />
+                                        <br> Ingredients:
+                                        <input type="text" class="form-control" id="ingridientCreate" placeholder="Enter ingrediant here" />
+                                        <input type="text" class="form-control" id="ingridientPortionCreate" placeholder="Enter portion here" />
+                                        <button type="button" id="addIngredients" class="btn btn-primary" style="background-color: lightseagreen">ADD INGRIDIENT</button>
+                                        <ul id="ingredients"></ul>
+                                        <br> Directions:
+                                        <textarea wrap="physical" style="height: 200px" class="form-control" id="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
+
+                                        <br>
+                                        <b>Preperation time:</b>
+                                        <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
+                                        <br>
+                                        <b>Cooking time:</b>
+                                        <input type="number" class="form-control" id="cookingTimeCreate" placeholder="" />
+                                        <br> *enter the time in minutes
+                                        <br> Youtube URL
+                                        <input type="text" class="form-control" id="youtubeUrlCreate" placeholder="If you have a youtube video instruction add the Url here."
+                                        />
+                                        <br>
+                                        <b style="color: rgb(0, 128, 128)">Diets:</b>
+
+                                        <input type="checkbox" id="veganCreate" name="feature" value="vagan" />
+                                        <label for="vegan">vegan</label>
+
+                                        <input type="checkbox" id="vegetarianCreate" name="feature" value="vegetarian" />
+                                        <label for="vegetarian">vegetarian</label>
+
+                                        <input type="checkbox" id="high-proteinCreate" name="feature" value="high-protein" />
+                                        <label for="high-protein">high-protein</label>
+
+                                        <input type="checkbox" id="sugar-consciousCreate" name="feature" value="sugar-conscious" />
+                                        <label for="sugar-conscious">sugar-conscious</label>
+                                        <br>
+                                        <b style="color: rgb(0, 128, 128)">Allergies:</b>
+
+                                        <input type="checkbox" id="peanutsCreate" name="feature" value="peanut-free" />
+                                        <label for="peanut-free">peanut-free</label>
+
+                                        <input type="checkbox" id="treenutsCreate" name="feature" value="tree-nut-free" />
+                                        <label for="tree-nut-free">tree-nut-free</label>
+                                        <br>
+
+                                        <button type="button" id="addRecipe" class="btn btn-primary">ADD RECIPE</button>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: lightsalmon">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================handlebars============================== -->
+                <!-- render recipe -->
+                <!-- render recipe -->
+                <script id="recipe-template" type="text/x-handlebars-template">
+    <div class="currentRecipe" data-id="{{_id}}">
+        <h3>{{name}}</h3>
+        <img src="{{img}}" width="30px" height="30px">
+        <p>Prep-time: {{prepTime}} minutes</p>
+        <p>Cooking-time: {{cookingTime}} minutes</p>
+        <p>Total-time: {{totalTime}} minutes</p>
+        <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
+        <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
+        Ingredients:
+        <ul>
+            {{#each ingredients}}
+            <li>{{this.name}} - {{this.portion}}</li>
+            {{/each}}
+        </ul>
+        <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
+        <br>
+        {{#if haveYoutube}}
+        <iframe class="player" allowfullscreen src="{{youtubeUrl}}" height= "390" width= "640"></iframe>
+        {{/if}}
+        <div class="comments">
+            <div class="commentsForm">
+                <h4>Add a comment:</h4>
+                <input type="text" class="form-control commentsUserName" placeholder="User name" />
                 <br>
-                <div class="input-group mb-3 name-search-form">
-                    <input type="text" class="form-control" id="recipe-input" placeholder="Enter recipe name..:)"
-                        required>
-                    <br>
-                    <button type="button" class="btn add-ingredients">add ingredients you want?</button>
-                    <br>
-                    <input type="text" class="form-control toggle-ingredients-input" id="ingredients-input" placeholder="Enter ingredient/s with comma between!"
-                        required>
-                    <div class="container">
-                        <div class="allergies">Allergies:<br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox"
-                                    value="tree-nut-free">
-                                <label class="form-check-label" for="tree-nut-checkbox">tree-nut-free</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox"
-                                    value="peanut-free">
-                                <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
-                            </div>
-                            
-                        </div>
-                        <div class="diet">Diet:<br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="vegan-checkbox"
-                                    value="vegan">
-                                <label class="form-check-label" for="vegan-checkbox">vegan</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="vegetarian-checkbox"
-                                    value="vegetarian">
-                                <label class="form-check-label" for="vegetarian-checkbox">vegetarian</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="high-protein-checkbox"
-                                    value="high-protein">
-                                <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="sugar-conscious-checkbox"
-                                    value="sugar-conscious">
-                                <label class="form-check-label" for="sugar-conscious-checkbox">sugar-conscious</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-primary Get-recipes">Get recipes</button>
-                    </div>
-                </div>
+                <input type="text" class="form-control commentsText" placeholder="Comment Here" />
+                <br>
+                <input type="number" class="form-control commentsRating" placeholder="1-5" min="1" max="5"/>
+                <br>
+                <button type="button" class="addComment btn btn-primary">Add comment</button>
             </div>
-        </form>
-    </div>
-
-
-    <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
-    <div class="recipes"></div>
-    <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
-
-    <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
-    <div class="recipesApi"></div>
-    <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
-
-    <!--מתכון אחרי הוספה לכאן מגיע -->
-    <div class="recipe"></div>
-    <!--מתכון אחרי הוספה לכאן מגיע -->
-
-    <!-- render recipe -->
-    <script id="recipe-template" type="text/x-handlebars-template">
-        <div class="currentRecipe" data-id="{{_id}}">   
-            <h3>{{name}}</h3>
-            <img src="{{img}}" width="30px" height="30px">
-            <p>Prep-time: {{prepTime}} minutes</p>
-            <p>Cooking-time: {{cookingTime}} minutes</p>
-            <p>Total-time: {{totalTime}} minutes</p>
-            <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
-            <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
-            Ingredients:
-            <ul> 
-                {{#each ingredients}}
-                <li>{{this.name}} - {{this.portion}}</li>
-                {{/each}}
-            </ul>
-            <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
-
-            <div class="comments">
-                <div class="commentsForm">
-                    <h4>Add a comment:</h4>
-                    <input type="text" class="form-control commentsUserName" placeholder="User name" />
-                    <br>
-                    <input type="text" class="form-control commentsText" placeholder="Comment Here" />
-                    <br>
-                    <input type="number" class="form-control commentsRating" placeholder="1-5" min="1" max="5"/>
-                    <br>
-                    <button type="button" class="addComment btn btn-primary">Add comment</button>
-                </div>
-                {{#each comments}}
-                <div class="commentsContent" data-id="{{_id}}">                    
-                    {{userName}}:
-                    <br>
-                    {{text}}
-                    <br>
-                    {{rating}}
-                    <button class='btn btn-danger removeComment'>remove comment</button>
-                </div>
-                {{/each}}
+            {{#each comments}}
+            <div class="commentsContent" data-id="{{_id}}">
+                {{userName}}:
+                <br>
+                {{text}}
+                <br>
+                {{rating}}
+                <button class='btn btn-danger removeComment'>remove comment</button>
             </div>
+            {{/each}}
+        </div>
+        <button class='btn btn-danger removeRecipe'>remove recipe</button>
+        </div>
+</script>
 
-            <button class='btn btn-danger removeRecipe'>remove recipe</button>
-
-        </div>    
-    </script>
-
-    <script id="ingrediant-template" type="text/x-handlebars-template">
+                <script id="ingrediant-template" type="text/x-handlebars-template">
         {{#each ings}}
         <li class='ingredient'>
             <button class='btn btn-danger removeIng'>remove</button>
@@ -190,31 +518,46 @@
         {{/each}}
     </script>
 
-    <!-- render recipes -->
+                <!-- render recipes -->
 
-    <script id="recipes-template" type="text/x-handlebars-template">
-        {{#each recipes}}
-            <h3>{{name}}</h3>
-            <img src="{{img}}">
-            <p>Prep-time: {{prepTime}} </p>
-            <p>Cooking-time: {{cookingTime}} </p>
-            <p>Total-time: {{totalTime}} </p>
-            <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
-            <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
-            Ingredients:
-            <ul> 
-                {{#each ingredients}}
-                <li>{{this.name}} - {{this.portion}}</li>
-                {{/each}}
-            </ul>
-            <p>directions: {{#each directions}}{{this}} <br> {{/each}} </p>
-        {{/each}}
-    </script>
+                <script id="recipes-template" type="text/x-handlebars-template">
+                    {{#each recipes}}
+                        <h3>{{name}}</h3>
+                        <img src="{{img}}">
+                        <p>Prep-time: {{prepTime}} </p>
+                        <p>Cooking-time: {{cookingTime}} </p>
+                        <p>Total-time: {{totalTime}} </p>
+                        <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
+                        <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
+                        Ingredients:
+                        <ul>
+                            {{#each ingredients}}
+                            <li>{{this.name}} - {{this.portion}}</li>
+                            {{/each}}
+                        </ul>
+                        <p>directions: {{#each directions}}{{this}} <br> {{/each}} </p>
+             
+                        {{#if haveYoutube}}
+                        <iframe class="player" allowfullscreen src="{{youtubeUrl}}" height= "390" width= "640"></iframe>
+                        {{/if}}
+                        <h3>comments:</h3>
+                        {{#each comments}}
+                        <div class="commentsContent" data-id="{{_id}}">
+                            {{userName}}:
+                            <br>
+                            {{text}}
+                            <br>
+                            {{rating}}
+                            <button class='btn btn-danger removeComment'>remove comment</button>
+                        </div>
+                        {{/each}}
+                    {{/each}}
+                </script>
 
-    <!-- render recipes from Api-->
+                <!-- render recipes from Api-->
 
-    
-    <script id="recipesApi-template" type="text/x-handlebars-template">
+
+                <script id="recipesApi-template" type="text/x-handlebars-template">
         {{#each hits}}
             <h3>{{this.recipe.label}}</h3>
             <img src="{{this.recipe.image}}" height="100" width="100">
@@ -222,16 +565,678 @@
             <p>HealthLabels: {{#each this.recipe.healthLabels}}{{this}}, {{/each}}</p>
             <p>dietLabels: {{#each this.recipe.dietLabels}}{{this}}, {{/each}}</p>
             <a href="{{this.recipe.url}}" target="_blank" class="btn">get description</a>
-            <!-- <div> 
-                    <object type="text/html" onclick="{{this.recipe.url}}" height="400" width="500" style="overflow:auto;border:5px ridge blue">
-                    </object>
-                 </div> -->
         {{/each}}
     </script>
+                <!-- =============================================================================== -->
+                <!-- ========================= sign up mondal================ -->
 
-    <script src=".\jquery\dist\jquery.js" type="text/javascript"></script>
-    <script src=".\handlebars\dist\handlebars.js" type="text/javascript"></script>
-    <script src="main.js" type="module"></script>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <button type="button" id="buttonModal4" data-toggle="modal" data-target="#myModal4" onclick="document.getElementById('id01').style.display='block'"
+                        style="width:auto;">
+                        <div class="service-item fourth-service">
+                            <div class="icon"></div>
+                            <h4>Join Us!</h4>
+                            <p>We will be more than pleased if you'll
+                                <b> join our side, we have cookies!</b>
+                                We actually do have some awesome cookies recipes. you should check them.
+                            </p>
+                            <br>
+                        </div>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal4" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Registration</h4>
+                                </div>
+
+                                <div class="modal-body" style="box-sizing: border-box; width: 300px; height:auto">
+                                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                    <div id="id01" class="modal">
+                                        <br>
+                                        <br>
+                                        <form class="modal-content" action="/action_page.php">
+                                            <div class="container">
+                                                <h1>Sign Up</h1>
+                                                <p>Please fill in this form to create an account.</p>
+                                                <hr>
+                                                <label for="email">
+                                                    <b>Email</b>
+                                                </label>
+                                                <input type="text" placeholder="Enter Email" name="email" required>
+                                                <label for="psw">
+                                                    <b>Password</b>
+                                                </label>
+                                                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                                <!-- <label for="psw-repeat">
+                                                    <b>Repeat Password</b>
+                                                </label> -->
+                                                <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                                                </label>
+                                                <br>
+                                                <b>Please choose your diet:</b>
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="veganDiet" style="margin-bottom:15px"> Vegan
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="vegetarianDiet" style="margin-bottom:15px"> Vegetarian
+                                                </label>
+                                                <label>
+                                                    <input type="checkbox" checked="checked" name="vegetarianDiet" style="margin-bottom:15px"> Regular diet (none of the above)
+                                                </label>
+
+                                                <p> By creating an account you agree to our
+                                                    <a href="#" style="color:dodgerblue">Terms & Privacy</a>
+                                                </p>
+
+                                                <div class="clearfix">
+                                                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                                    <button type="submit" class="signupbtn">Sign Up</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <script>
+                                        // Get the modal
+                                        var modal = document.getElementById('id01');
+
+                                        // When the user clicks anywhere outside of the modal, close it
+                                        window.onclick = function (event) {
+                                            if (event.target == modal) {
+                                                modal.style.display = "none";
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- <div ====connecting to a dialog of searches ==> after that- load a new page of results==== -->
+    </div>
+    </div>
+
+    <div id="registration">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="left-text">
+                        <h4> Register today for free ,
+                            <br> make your cooking experience colorful.</h4>
+                        <p> With more than
+                            <b>1.7 million recipes </b>, Food Bank makes cooking simple. With our cooking app, you’ll be inspired
+                            and organized in the kitchen and on the go.
+                            <br>
+                            <br> Some of the highlights are available for
+                            <b>registrated users only, </b>
+                            including access to Food Bank’s
+                            <b>extanded library of recipes</b> , the ability to
+                            <b>add snapshots of your own recipes,</b> and even
+                            <b>create your own recipe "wish list"</b>
+                        </p>
+                        <ul>
+                            <li>
+                                <div class="white-button">
+                                    <a href="#" class="scroll-link" data-id="contact">I have more questions</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="primary-button">
+                                    <a href="#" class="scroll-link" data-id="about">Register Now</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-image">
+                        <img src="img/what-we-do-right-image.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="portfolio" class="page-section">
+        <div class="content-wrapper">
+            <div class="inner-container container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h4>Some of our top-picked ones</h4>
+                            <div class="line-dec"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="projects-holder-3">
+                    <div class="filter-categories">
+                        <ul class="project-filter">
+                            <li class="filter" data-filter="all">
+                                <span>All</span>
+                            </li>
+                            <li class="filter" data-filter="Italian">
+                                <span>Italian</span>
+                            </li>
+                            <!-- changing data-id -->
+                            <li class="filter" data-filter="American">
+                                <span>American</span>
+                            </li>
+                            <li class="filter" data-filter="Asian">
+                                <span>Asian</span>
+                            </li>
+                            <li class="filter" data-filter="Indian">
+                                <span>Indian</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="projects-holder">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 project-item mix American">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/american1.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_01.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix American">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/american3.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_02.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Indian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/indian11.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_03.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Asian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/asian1.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_04.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Italian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/italian1.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_05.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Indian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/indian2.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_06.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Italian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/italian2.jpeg">
+                                        <!-- change to Italian -->
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_07.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 project-item mix Asian">
+                                <div class="thumb">
+                                    <div class="image">
+                                        <img src="img/portfolio/asian2.jpeg">
+                                    </div>
+                                    <div class="hover-effect">
+                                        <a href="img/portfolio_big_08.jpg" data-lightbox="image-1">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="yourSearches" class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h4>What's for dinner?</h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
+            <div id="recipes"></div>
+            <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
+
+            <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
+            <div id="recipesApi"></div>
+            <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
+
+            <!--מתכון אחרי הוספה לכאן מגיע -->
+            <div id="recipe"></div>
+            <!--מתכון אחרי הוספה לכאן מגיע -->
+        </div>
+    </div>
+    <hr>
+    <!-- ===================actual blogs section================ -->
+
+    <div id="blog" id="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h4>Our Blog Posts</h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="blog-item b1">
+                        <div class="thumb">
+                            <img src="img/blog_01.jpg" alt="">
+                            <div class="text-content">
+                                <h4>Is It Better to Be a Vegetarian?</h4>
+                                <span>Posted:
+                                    <em>George</em> / Date:
+                                    <em>11 Aug 2018</em> / Category:
+                                    <em>meat-free</em>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="blog-item second-blog b2">
+                        <div class="thumb">
+                            <img src="img/portfolio/blogmilk.jpeg" alt="">
+                            <div class="text-content">
+                                <h4>Should You Switch to Full-Fat Dairy?</h4>
+                                </h4>
+                                <span>Posted:
+                                    <em>Keren-ley</em> / Date:
+                                    <em>24 Jul 2018</em> / Category:
+                                    <em>Dairy</em>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="blog-item b3">
+                        <div class="thumb">
+                            <img src="img/portfolio/exerblog.jpeg" alt="">
+                            <div class="text-content">
+                                <h4>When You Really Should Skip Your Workout</h4>
+                                <span>Posted:
+                                    <em>Johnny</em> / Date:
+                                    <em>16 Feb 2017</em> / Category:
+                                    <em>Exercise</em>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pop">
+                        <span>✖</span>
+                        <p>There are two basic kinds of vegetarian diet: lacto-ovo and strict (vegan). Most vegetarians fall
+                            into the lacto-ovo category: They eat only non-animal products (fruits, veggies, grains, nuts,
+                            soy, etc.), but do eat animal byproducts, such as yogurt and eggs. In terms of nutritional requirements,
+                            being a lacto-ovo vegetarian isn’t all that different from being a meat-eater, according to Katherine
+                            Tallmadge, RD, LD, past media spokesperson for the Academy of Nutrition and Dietetics. Vegans,
+                            however, don’t eat any animal products whatsoever -- and as a result, “they must be very careful
+                            in their selection of foods so that they get all the nutrients they need,” says Tallmadge. (Potato
+                            chips are vegan, after all.)</p>
+                        <p>That said, following a vegetarian diet “can be nutritionally superior to any other way of eating,”
+                            says Tallmadge. “It can be one of the healthiest ways to eat, because we know plant foods are
+                            loaded with nutrients to protect our health.”</p>
+                        <p>According to the Academy of Nutrition and Dietetics, an evidence-based review showed that a vegetarian
+                            diet is associated with a lower risk of death from ischemic heart disease. Vegetarians appear
+                            to have lower low-density lipoprotein cholesterol levels, lower blood pressure and lower rates
+                            of hypertension and type 2 diabetes than meat eaters, lower risk of overall cancer rates and
+                            lower risk of chronic disease. But if your vegetarian co-worker is noshing greasy veggie burgers
+                            and fries every day for lunch, is he likely to be healthier than you, who always orders the grilled
+                            salmon? Definitely not!</p>
+                    </div>
+                    <div class="pop2">
+                        <span>✖</span>
+                        <p>As a dietitian, I totally get why nutrition advice frustrates so many people–because sometimes it
+                            does a complete 180. Take dairy: For years we’ve been told to choose low-fat and non-fat milk,
+                            yogurt, and cheese. So we dutifully did that, even when our spouses complained about the fat-free
+                            cheese (cringe).
+                            <br>
+                            <br>The reason low-fat dairy has long been recommended (and still is, by major health organizations)
+                            is to reduce intake of saturated fat, which we’ve been told raises cholesterol levels and boosts
+                            the risk of heart disease. But lately, some research is questioning that connection.
+                            <br>
+                            <br> Consider this: In a study in The Lancet of adults ages 35-70 from 21 different countries, people
+                            who had more than two servings of dairy a day had a lower risk of death from heart disease or
+                            stroke (regardless of whether it was full-fat or low-fat) than people who had no dairy. In another
+                            study, researchers measured circulating levels of dairy fatty acids in the bloodstreams of people
+                            ages 65 and older. People who had higher levels of these fats did not have greater risk for coronary
+                            heart disease or other cardiovascular events in the following 13 years. In fact, people who had
+                            higher levels of one particular dairy fat actually had a lower risk of dying of a stroke.
+                        </p>
+                    </div>
+                    <div class="pop3">
+                        <span>✖</span>
+                        <p>You know how it goes: you’re sitting in the car, thinking about hitting the gym, but the thought
+                            fills you with dread. Do you need an off day, or just a kick of motivation?
+                            <br> To be totally honest, there are a lot of times when I think about skipping a workout. Maybe
+                            I don’t feel 100% that day. Maybe it’s been a stressful morning. Maybe I’m pondering all of the
+                            chores or work tasks I could accomplish instead. While most times I know I just need to get started
+                            and I’ll feel 1000x times better, there are also legit reasons to skip a workout.
+                            <br> Here are the top 5 reasons why hitting the gym may not be a good idea:
+                            <br> 1. You’re sick. If you have a fever, are hacking up and sneezing your face off, or have body
+                            aches/chills, it’s a smart idea to stay home. Not only will you likely feel worse, but you could
+                            also infect those around you. I’ll never forget when I was taking an Orangetheory class and a
+                            woman a few benches away from me told the coach, “I’m taking it easy today because I have the
+                            flu.” The flu! Needless to say, I sanitized my entire body after that class and made sure to
+                            take my vitamins.
+                            <br> 2. You didn’t sleep well the night before.Lack of sleep also increases inflammation in the body,
+                            increases our cortisol, and can make us more susceptible to overeating (for energy!) and stress.
+                            Take a nap and hit the gym the following day.
+                            <br> 3. You’re injured. This one can be super frustrating, especially if you have specific fitness
+                            goals or ride off exercise endorphins. Listen to your doctor’s recommendations. If they tell
+                            you to nix formal exercise entirely, take the time to rest and know that you’ll be able to properly
+                            recover.
+                            <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fun-facts">
+        <div class="container" style="margin-left: 200px">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="560">0</div>
+                        <span>Regular Visitors</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="214">0</div>
+                        <span>Added Recipes</span>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="100">0</div>
+                        <span>Precentage of Happy Clients ;)</span>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="fact-item">
+                        <div class="counter" data-count="16">0</div>
+                        <span>Total Awards</span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+    <div id="contact" class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h4>Contact Us</h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="map">
+                        <img src="img/map.png" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <form id="contact" action="mailto:gefen1998@gmail.com" method="post">
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6">
+                                <fieldset>
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-12">
+                                <fieldset>
+                                    <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                </fieldset>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div id="us" class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="our3" class="section-heading">
+                        <h4 "my-4">About Us</h4>
+                        <div class="line-dec"></div>
+                        <br>
+                    </div>
+                </div>
+                <div id="aboutus">
+                    <br>
+                    <p>It's Nice to Meet You!</p>
+                    <p> We're Elevation students who are passionate about learning how to code</p>
+                </div>
+
+                <!-- Team Members Row -->
+                <div class="row my-4">
+                    <div class="col-lg-12">
+                        <h3 class="my-4 section-heading" id="teamheading">Our Team</h3>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img class="rounded-circle img-fluid d-block mx-auto" src="img/portfolio/dana.JPG" alt="">
+                        <h3>Dana Zaloziecki</h3>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img class="rounded-circle img-fluid d-block mx-auto" src="img/portfolio/gefen.jpg" alt="">
+                        <h3>Gefen Krispil</h3>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 text-center mb-4">
+                        <img class="rounded-circle img-fluid d-block mx-auto" src="img/portfolio/shir.jpg" alt="">
+                        <h3>Shir Hen</h3>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="copyright-text">
+                        <p>Copyright &copy; 2017 Company Name - Design:
+                            <a href="http://www.tooplate.com/view/2089-meteor" target="_parent">Meteor</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="social-icons">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-rss"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+    <script src="js/vendor/bootstrap.min.js"></script>
+
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <!-- type module? -->
+
+    <!-- <script src="jquery/dist/jquery.min.js" type="text/javascript"></script> -->
+    <script src="./node_modules/handlebars/dist/handlebars.min.js" type="text/javascript"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <!-- <script src="roundabout\startbootstrap-round-about\vendor\bootstrap\js\bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="roundabout/startbootstrap-round-about/vendor/jquery/jquery.min.js" type="text/javascript"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // navigation click actions 
+            $('.scroll-link').on('click', function (event) {
+                event.preventDefault();
+                var sectionID = $(this).attr("data-id");
+                scrollToID('#' + sectionID, 750);
+            });
+            // scroll to top action
+            $('.scroll-top').on('click', function (event) {
+                event.preventDefault();
+                $('html, body').animate({ scrollTop: 0 }, 'slow');
+            });
+            // mobile nav toggle
+            $('#nav-toggle').on('click', function (event) {
+                event.preventDefault();
+                $('#main-nav').toggleClass("open");
+            });
+        });
+        // scroll function
+        function scrollToID(id, speed) {
+            var offSet = 50;
+            var targetOffset = $(id).offset().top - offSet;
+            var mainNav = $('#main-nav');
+            $('html,body').animate({ scrollTop: targetOffset }, speed);
+            if (mainNav.hasClass("open")) {
+                mainNav.css("height", "1px").removeClass("in").addClass("collapse");
+                mainNav.removeClass("open");
+            }
+        }
+        if (typeof console === "undefined") {
+            console = {
+                log: function () { }
+            };
+        }
+    </script>
+
+
 </body>
 
 </html>

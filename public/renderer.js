@@ -1,8 +1,8 @@
 class Renderer {
     constructor() {
-      this.$recipe = $('.recipe')
-      this.$recipes = $('.recipes')
-      this.$recipesApi = $('.recipesApi')
+      this.$recipe = $('#recipe')
+      this.$recipes = $('#recipes')
+      this.$recipesApi = $('#recipesApi')
 
     }
 

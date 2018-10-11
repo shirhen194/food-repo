@@ -14,6 +14,13 @@ router.use(bodyParser.urlencoded({ extended: false }));
 const Recipe = require('../models/recipeModel');
 const Comment = require('../models/commentModel');
 
+
+recipe= new Recipe({
+    name:"pasta"
+})
+
+recipe.save()
+
 router.get('', function (req, res) {
     Recipe.find({}).populate('comments').exec(function (err, recipes) {
         if (err) res.status(500).send("didnt deletee from model")
