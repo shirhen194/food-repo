@@ -155,7 +155,7 @@ class EventsHandler {
                
 
             }).fail(() => console.log("didnt get from api"))
-            this.recipesRepository.getFilteredRecipesByName(recName, stringAlergans, stringDiet).then((recipes) => { this.renderer.renderRecipesfromDb(recipes) }).fail(() => console.log("didnt get from api")).fail(() => console.log("didnt get from database"))
+            this.recipesRepository.getFilteredRecipesByName(recName, stringAlergans, stringDiet, ingredientsArr).then((recipes) => { this.renderer.renderRecipesfromDb(recipes) }).fail(() => console.log("didnt get from api")).fail(() => console.log("didnt get from database"))
         console.log(url)
         })
     }

@@ -40,7 +40,7 @@ router.post('', function (req, res) {
     })
 });
 
-router.delete('/:recipeId', (req,res)=>{
+router.delete('/:recipeId', (req, res) => {
     let id = req.params.recipeId
 
     Recipe.findById(id, (err, recipe) => {
@@ -58,22 +58,26 @@ router.delete('/:recipeId', (req,res)=>{
     })
 })
 
-router.get('/:recName/:alergies/:diets', function (req, res) {
+router.get('/:recName/:alergies/:diets/:ingredients', function (req, res) {
     const recName = req.params.recName;
     const alergies = JSON.parse(req.params.alergies);
     const diets = JSON.parse(req.params.diets);
+    const ingredients = JSON.parse(req.params.ingredients);
 
     console.log(recName + alergies + diets)
 
-    Recipe.find({name: recName ,alergans: alergies ,diet: diets })
-    .populate('comments').exec(function (err, recipes) {
+    Recipe.find({ name: recName, alergans: alergies, diet: diets, ingredients: {name: ingredients} })
+        .populate('comments').exec(function (err, recipes) {
             if (err) {
                 console.error(err)
-                res.status(500).send("didnt deletee from model")}
+                res.status(500).send("didnt deletee from model")
+            }
             else {
                 console.log(recipes)
-                res.send(recipes)}
+                res.send(recipes)
+            }
         });
 });
+
 
 module.exports = router

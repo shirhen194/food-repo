@@ -19,8 +19,8 @@ class RecipesRepository {
         })
     }
 
-    getFilteredRecipesByName(recName,alergies, diets){
-        return  $.get(`/recipes/${recName}/${alergies}/${diets}`)
+    getFilteredRecipesByName(recName,alergies, diets, ingredients){
+        return  $.get(`/recipes/${recName}/${alergies}/${diets}/${ingredients}`)
     }
 
     addAComment(newComment, recipeId) {
