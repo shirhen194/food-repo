@@ -11,7 +11,7 @@ class EventsHandler {
             //finds all the checkboxes
             let dieats = [$('#veganCreate'), $('#vegetarianCreate'), $('#high-proteinCreate'), $('#low-sugarCreate')];
             let alergies = [$('#gluten-freeCreate'), $('#dairy-freeCreate'), $('#peanutsCreate'), $('#treenutsCreate')];
-            
+
             //creats object with all the variables
             let recipe = {
                 name: $('#recipeNameCreate').val(),
@@ -43,9 +43,9 @@ class EventsHandler {
 
             let newRecipe = JSON.stringify(recipe)
 
-            this.recipesRepository.addARecipe({newRecipe: newRecipe}).then(()=>{
-            this.renderer.renderRecipe(this.recipesRepository.currentRecipe);
-            this.recipesRepository.removeAllIng();
+            this.recipesRepository.addARecipe({ newRecipe: newRecipe }).then(() => {
+                this.renderer.renderRecipe(this.recipesRepository.currentRecipe);
+                this.recipesRepository.removeAllIng();
             })
         })
     }
@@ -61,16 +61,16 @@ class EventsHandler {
             //filter Api
             //first we take the q input! which is the recipe name:
             let q = $("#recipe-input").val()
-            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q="+q
+            let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q=" + q
 
 
-            let health=[$('input[value="gluten-free"]'),$('input[value="tree-nut-free"]'),$('input[value="peanut-free"]'),
-            $('input[value="dairy-free"]'),$('input[value="vegan"]'), $('input[value="vegetarian"]'),
+            let health = [$('input[value="gluten-free"]'), $('input[value="tree-nut-free"]'), $('input[value="peanut-free"]'),
+            $('input[value="dairy-free"]'), $('input[value="vegan"]'), $('input[value="vegetarian"]'),
             $('input[value="low-sugar"]')]
 
             for (let i of health) {
                 if (i.is(':checked')) {
-                    url += "&Health="+i.val()
+                    url += "&Health=" + i.val()
                 }
             }
 
@@ -82,8 +82,8 @@ class EventsHandler {
             let ingredients = $(".toggle-ingredients-input").val()
 
             //filter database
-            let alergansFilter =[]
-            let dietFilter=[]
+            let alergansFilter = []
+            let dietFilter = []
             let recName = $("#recipe-input").val()
 
             let diets = [$('#vegan-checkbox'), $('#vegetarian-checkbox'), $('#high-protein-checkbox'), $('#low-sugar-checkbox')];
@@ -91,19 +91,19 @@ class EventsHandler {
 
             for (let i of alergies) {
                 if (i.checked) {
-                    alergansFilter.push(""+i.val()+"")
+                    alergansFilter.push("" + i.val() + "")
                 }
             }
 
             for (let i of diets) {
                 if (i.checked) {
-                    dietFilter.push(""+i.val()+"")
+                    dietFilter.push("" + i.val() + "")
                 }
             }
-        
+
             //חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
             // this.recipesApiRepository.getRecipesApi(url).then((recipes) => {this.renderer.renderRecipe(recipes)})
-            this.recipesRepository.getFilteredRecipesByName(recName,alergansFilter,dietFilter).then((recipes) => {this.renderer.renderRecipe(recipes)})
+            this.recipesRepository.getFilteredRecipesByName(recName, alergansFilter, dietFilter).then((recipes) => { this.renderer.renderRecipe(recipes) })
         })
     }
 
@@ -134,6 +134,51 @@ class EventsHandler {
         })
     }
 
+    handleAddAComment() {
+        $('.recipe').on('click', '.addComment', (event) => {
+            let $commentUserName = $(event.currentTarget).closest('.commentsForm').find('.commentsUserName')
+            let $commentText = $(event.currentTarget).closest('.commentsForm').find('.commentsText')
+            let $commentRating = $(event.currentTarget).closest('.commentsForm').find('.commentsRating')
+            let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
+
+            let comment = {
+                userName: $commentUserName.val(),
+                text: $commentText.val(),
+                rating: parseInt($commentRating.val()),
+                recipe: recipeId
+            }
+
+            let stryngifyComment = JSON.stringify(comment)
+
+            this.recipesRepository.addAComment(stryngifyComment, recipeId).then(() => {
+                this.renderer.renderRecipe(this.recipesRepository.currentRecipe)
+                $commentUserName.val("")
+                $commentText.val("")
+                $commentRating.val("")
+            })
+        })
+    }
+
+    handleRemoveRecipe() {
+        $('.recipe').on('click', '.removeRecipe', (event) => {
+            let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
+
+            this.recipesRepository.removeRecipe(recipeId).then((data)=>{
+                this.renderer.$recipe.empty()
+            })
+        })
+    }
+
+    handleRemovecomment(){
+        $('.recipe').on('click', '.removeComment', (event) => {
+            let recipeId = $(event.currentTarget).closest('.currentRecipe').data().id
+            let commentId = $(event.currentTarget).closest('.commentsContent').data().id
+
+            this.recipesRepository.removeComment(recipeId, commentId).then(()=>{
+                this.renderer.renderRecipe(this.recipesRepository.currentRecipe)
+            })
+        })
+    }
 }
 
 export default EventsHandler
