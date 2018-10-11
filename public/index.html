@@ -24,7 +24,8 @@
         <button type="button" id="addIngredients" class="btn btn-primary">ADD INGRIDIENT</button>
         <ul id="ingredients"></ul>
         <br>
-        Directions: <input type="text" class="form-control" id="directionsCreate" placeholder="Entere the directions of the recipe" />
+        Directions: <textarea wrap="physical" style="height: 200px" class="form-control" id="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
+
         <br>
         Preperation time: <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
         <br>
@@ -46,32 +47,23 @@
         <input type="checkbox" id="high-proteinCreate" name="feature" value="high-protein" />
         <label for="high-protein">high-protein</label>
 
-        <input type="checkbox" id="low-sugarCreate" name="feature" value="low-sugar" />
-        <label for="low-sugar">low-sugar</label>
+        <input type="checkbox" id="sugar-consciousCreate" name="feature" value="sugar-conscious" />
+        <label for="sugar-conscious">sugar-conscious</label>
         <br>
         Alergies:
 
-        <input type="checkbox" id="gluten-freeCreate" name="feature" value="gluten-free" />
-        <label for="gluten-free">gluten-Free</label>
+        <input type="checkbox" id="peanutsCreate" name="feature" value="peanut-free" />
+        <label for="peanut-free">peanut-free</label>
 
-        <input type="checkbox" id="dairy-freeCreate" name="feature" value="dairy-free" />
-        <label for="dairy-free">dairy-Free</label>
-
-        <input type="checkbox" id="peanutsCreate" name="feature" value="peanuts" />
-        <label for="peanuts">peanut-free</label>
-
-        <input type="checkbox" id="treenutsCreate" name="feature" value="treenuts" />
-        <label for="treenuts">tree-nut-free</label>
+        <input type="checkbox" id="treenutsCreate" name="feature" value="tree-nut-free" />
+        <label for="tree-nut-free">tree-nut-free</label>
         <br>
 
         <button type="button" id="addRecipe" class="btn btn-primary">ADD RECIPE</button>
     </div>
 
 
-    <div class="container search">
-        <button type="button" class="btn search-by-name">Search by recipe name</button>
-        <button type="button" class="btn search-by-ingredients">Search by ingredients</button>
-    </div>
+
     <div class="container name-search-screen">
         <form class="header-form">
             <div class="form-group">
@@ -88,11 +80,6 @@
                     <div class="container">
                         <div class="allergies">Allergies:<br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="gluten-checkbox"
-                                    value="gluten-free">
-                                <label class="form-check-label" for="gluten-checkbox">gluten-free</label>
-                            </div>
-                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="feature" id="tree-nut-checkbox"
                                     value="tree-nut-free">
                                 <label class="form-check-label" for="tree-nut-checkbox">tree-nut-free</label>
@@ -100,13 +87,9 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox"
                                     value="peanut-free">
-                                <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
+                                <label class="form-check-label" for="peanuts-checkbox">peanut-fre\e</label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="dairy-checkbox"
-                                    value="dairy-free">
-                                <label class="form-check-label" for="dairy-checkbox">dairy-free</label>
-                            </div>
+                            
                         </div>
                         <div class="diet">Diet:<br>
                             <div class="form-check form-check-inline">
@@ -125,9 +108,9 @@
                                 <label class="form-check-label" for="high-protein-checkbox">high-protein</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="feature" id="low-sugar-checkbox"
-                                    value="low-sugar">
-                                <label class="form-check-label" for="low-sugar-checkbox">low-sugar</label>
+                                <input class="form-check-input" type="checkbox" name="feature" id="sugar-conscious-checkbox"
+                                    value="sugar-conscious">
+                                <label class="form-check-label" for="sugar-conscious-checkbox">sugar-conscious</label>
                             </div>
                         </div>
                     </div>
@@ -143,6 +126,10 @@
     <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
     <div class="recipes"></div>
     <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
+
+        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
+        <div class="recipesApi"></div>
+        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
 
     <!--מתכון אחרי הוספה לכאן מגיע -->
     <div class="recipe"></div>
@@ -167,11 +154,12 @@
 
     <!-- render recipe -->
     <script id="recipe-template" type="text/x-handlebars-template">
+        <div class="currentRecipe" data-id="{{_id}}">   
             <h3>{{name}}</h3>
-            <img src="{{img}}">
-            <p>Prep-time: {{prepTime}} </p>
-            <p>Cooking-time: {{cookingTime}} </p>
-            <p>Total-time: {{totalTime}} </p>
+            <img src="{{img}}" width="30px" height="30px">
+            <p>Prep-time: {{prepTime}} minutes</p>
+            <p>Cooking-time: {{cookingTime}} minutes</p>
+            <p>Total-time: {{totalTime}} minutes</p>
             <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
             <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
             Ingredients:
@@ -180,7 +168,34 @@
                 <li>{{this.name}} - {{this.portion}}</li>
                 {{/each}}
             </ul>
-            <p>directions: {{directions}}</p>
+            <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
+
+            <div class="comments">
+                <div class="commentsForm">
+                    <h4>Add a comment:</h4>
+                    <input type="text" class="form-control commentsUserName" placeholder="User name" />
+                    <br>
+                    <input type="text" class="form-control commentsText" placeholder="Comment Here" />
+                    <br>
+                    <input type="number" class="form-control commentsRating" placeholder="1-5" min="1" max="5"/>
+                    <br>
+                    <button type="button" class="addComment btn btn-primary">Add comment</button>
+                </div>
+                {{#each comments}}
+                <div class="commentsContent" data-id="{{_id}}">                    
+                    {{userName}}:
+                    <br>
+                    {{text}}
+                    <br>
+                    {{rating}}
+                    <button class='btn btn-danger removeComment'>remove comment</button>
+                </div>
+                {{/each}}
+            </div>
+
+            <button class='btn btn-danger removeRecipe'>remove recipe</button>
+
+        </div>    
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
@@ -202,28 +217,32 @@
             <p>Prep-time: {{prepTime}} </p>
             <p>Cooking-time: {{cookingTime}} </p>
             <p>Total-time: {{totalTime}} </p>
-            <p>Alergans: {{alergans}}</p>
-            <p>Diets: {{diet}}</p>
+            <p>Alergies: {{#each alergans}}{{this}}, {{/each}}</p>
+            <p>Diets: {{#each diet}}{{this}}, {{/each}}</p>
             Ingredients:
             <ul> 
-                {{#each ingridiant}}
-                <li>{{name}} - {{portion}}</li>
+                {{#each ingredients}}
+                <li>{{this.name}} - {{this.portion}}</li>
                 {{/each}}
             </ul>
-            <p>directions: {{directions}}</p>
-            Youtube clip: 
-            <iframe class="player" width="500" height="315" src="{{youtubeUrl}}" frameborder="0"
-            allowfullscreen></iframe>
+            <p>directions: {{#each directions}}{{this}} <br> {{/each}} </p>
         {{/each}}
     </script>
 
-    <script id="ingrediant-template" type="text/x-handlebars-template">
-        {{#each ings}}
-        <li class='ingredient'>
-            <button class='btn btn-danger removeIng'>remove</button>
-                <span class="ingName">{{name}}</span>: 
-                <span class="ingPortion">{{portion}}</span>  
-        </li>
+    <!-- render recipes from Api-->
+
+    
+    <script id="recipesApi-template" type="text/x-handlebars-template">
+        {{#each hits}}
+            <h3>{{this.recipe.label}}</h3>
+            <img src="{{this.recipe.image}}" height="100" width="100">
+            <p>Total-time: {{this.recipe.totalTime}} </p>
+            <p>HealthLabels: {{#each this.recipe.healthLabels}}{{this}}, {{/each}}</p>
+            <p>dietLabels: {{#each this.recipe.dietLabels}}{{this}}, {{/each}}</p>
+            <div> 
+                    <object type="text/html" data="{{this.recipe.url}}" height="400" width="500" style="overflow:auto;border:5px ridge blue">
+                    </object>
+                 </div>
         {{/each}}
     </script>
 
