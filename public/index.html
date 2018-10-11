@@ -25,6 +25,7 @@
         <ul id="ingredients"></ul>
         <br>
         Directions: <textarea wrap="physical" style="height: 200px" class="form-control" id="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
+
         <br>
         Preperation time: <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
         <br>
@@ -149,6 +150,7 @@
 
     <!-- render recipe -->
     <script id="recipe-template" type="text/x-handlebars-template">
+        <div class="currentRecipe" data-id="{{_id}}">   
             <h3>{{name}}</h3>
             <img src="{{img}}">
             <p>Prep-time: {{prepTime}} </p>
@@ -163,6 +165,33 @@
                 {{/each}}
             </ul>
             <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
+
+            <div class="comments">
+                <div class="commentsForm">
+                    <h4>Add a comment:</h4>
+                    <input type="text" class="form-control commentsUserName" placeholder="User name" />
+                    <br>
+                    <input type="text" class="form-control commentsText" placeholder="Comment Here" />
+                    <br>
+                    <input type="number" class="form-control commentsRating" placeholder="1-5" min="1" max="5"/>
+                    <br>
+                    <button type="button" class="addComment btn btn-primary">Add comment</button>
+                </div>
+                {{#each comments}}
+                <div class="commentsContent" data-id="{{_id}}">                    
+                    {{userName}}:
+                    <br>
+                    {{text}}
+                    <br>
+                    {{rating}}
+                    <button class='btn btn-danger removeComment'>remove comment</button>
+                </div>
+                {{/each}}
+            </div>
+
+            <button class='btn btn-danger removeRecipe'>remove recipe</button>
+
+        </div>    
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
@@ -206,7 +235,7 @@
         {{/each}}
     </script>
 
-    <script src="jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src=".\jquery\dist\jquery.js" type="text/javascript"></script>
     <script src=".\handlebars\dist\handlebars.js" type="text/javascript"></script>
     <script src="main.js" type="module"></script>
 </body>
