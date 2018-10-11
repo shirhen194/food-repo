@@ -21,7 +21,7 @@ class Renderer {
             
         const source = $('#recipes-template').html();
         const template = Handlebars.compile(source)
-        const newHTML = template(recipes);
+        const newHTML = template({recipes});
         this.$recipes.append(newHTML);
     }
 
