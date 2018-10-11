@@ -24,7 +24,7 @@
         <button type="button" id="addIngredients" class="btn btn-primary">ADD INGRIDIENT</button>
         <ul id="ingredients"></ul>
         <br>
-        Directions: <textarea wrap="physical" style="height: 50px" class="form-control" class="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
+        Directions: <textarea wrap="physical" style="height: 200px" class="form-control" id="directionsCreate" placeholder="Entere the stages of the recipe here"></textarea>
         <br>
         Preperation time: <input type="number" class="form-control" id="prepTimeCreate" placeholder="" />
         <br>
@@ -162,7 +162,7 @@
                 <li>{{this.name}} - {{this.portion}}</li>
                 {{/each}}
             </ul>
-            <span>directions:<div>{{directions}}</div></span>
+            <span>directions:<div>{{#each directions}}{{this}}<br> {{/each}}</div></span>
     </script>
 
     <script id="ingrediant-template" type="text/x-handlebars-template">
