@@ -85,7 +85,7 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" name="feature" id="peanuts-checkbox"
                                     value="peanut-free">
-                                <label class="form-check-label" for="peanuts-checkbox">peanut-fre\e</label>
+                                <label class="form-check-label" for="peanuts-checkbox">peanut-free</label>
                             </div>
                             
                         </div>
@@ -125,9 +125,9 @@
     <div class="recipes"></div>
     <!-- לכאן מכיעים מתכונים לאחר חיפוש -->
 
-        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
-        <div class="recipesApi"></div>
-        <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
+    <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!! -->
+    <div class="recipesApi"></div>
+    <!-- לכאן מכיעים מתכונים לאחר חיפוש !!Apiב!!-->
 
     <!--מתכון אחרי הוספה לכאן מגיע -->
     <div class="recipe"></div>
@@ -192,10 +192,11 @@
             <p>Total-time: {{this.recipe.totalTime}} </p>
             <p>HealthLabels: {{#each this.recipe.healthLabels}}{{this}}, {{/each}}</p>
             <p>dietLabels: {{#each this.recipe.dietLabels}}{{this}}, {{/each}}</p>
-            <div> 
-                    <object type="text/html" data="{{this.recipe.url}}" height="400" width="500" style="overflow:auto;border:5px ridge blue">
+            <a href="{{this.recipe.url}}" target="_blank" class="btn">get description</a>
+            <!-- <div> 
+                    <object type="text/html" onclick="{{this.recipe.url}}" height="400" width="500" style="overflow:auto;border:5px ridge blue">
                     </object>
-                 </div>
+                 </div> -->
         {{/each}}
     </script>
 

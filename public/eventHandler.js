@@ -59,8 +59,17 @@ class EventsHandler {
     sendCriterias() {
         $(".Get-recipes").on('click', () => {
             //filter Api
+
             //first we take the q input! which is the recipe name:
             let q = $("#recipe-input").val()
+            //get ingredients from client
+            let ingredients = $(".toggle-ingredients-input").val()
+            let ingredientsArr = ingredients.split(',');
+            for (let ingredient of ingredientsArr){
+                q+=" "+ingredient
+            }
+
+
             let url = "https://api.edamam.com/search?app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc&q=" + q
 
 
@@ -70,12 +79,12 @@ class EventsHandler {
 
             for (let i of health) {
                 if (i.is(':checked')) {
-                    url += "&Health=" + i.val()
+                    url += "&health=" + i.val()
                 }
             }
 
             if ($('input[value="high-protein"]').is(':checked')) {
-                url += "&Diet=high-protein"
+                url += "&diet=high-protein"
             }
 
             url += "&from=0&to=10&app_id=85758adc&app_key=3e6db936f012aeb14bbf9d31f821edbc"
@@ -104,47 +113,40 @@ class EventsHandler {
             let stringDiet = JSON.stringify(dietFilter)
             let stringAlergans = JSON.stringify(alergansFilter)
 
-            //get ingredients from client
-            let ingredients = $(".toggle-ingredients-input").val()
-            let ingredientsArr = ingredients.split(/\s+/);
+
 
             //לעשות דברים קולים עם המרכיבים שמקבלים מהapi
-            let ingredientCount = 0
-            function getIngredients(recipes) {
+            // let ingredientCount = 0
+            // function getIngredients(recipes) {
 
-                for (let i in recipes.hits) {
-                    let apiIngredientsArr = recipes.hits[i].ingredientLines.split(/\s+/);
-                    for (let ingredientRecipe of apiIngredientsArr) {
-                        for (let ingredientSearched of ingredientsArr) {
-                            if (ingredientSearched == ingredientRecipe) {
-                                ingredientCount++
-                            }
-                        }
-                    }
+            //     for (let i in recipes.hits) {
+            //         let apiIngredientsArr = recipes.hits[i].recipe.ingredientLines
+            //         console.log(apiIngredientsArr)
+            //         for (let ingredientfromApi of apiIngredientsArr) {
+            //             for (let ingredientRecipe of ingredientsArr) {
+            //                 ingredientfromApi.toLowerCase();
+            //                 ingredientRecipe.toLowerCase();
+            //                 if (ingredientfromApi.search(ingredientRecipe) !== -1) {
+            //                     ingredientCount++
+            //                 }
+            //             }
+            //         }
 
-                    if (ingredientCount != ingredientsArr.length) {
-                        recipes.hits.splice(i, 1)
-                    }
+            //         if (ingredientCount != ingredientsArr.length) {
+            //             recipes.hits.splice(i, 1)
+            //         }
 
-                    ingredientCount=0
-                }
+            //         ingredientCount=0
+            //     }
 
-                return recipes
-            }
+            //     return recipes
+            // }
 
 
             // חפשי במרכיבים אם יש משהו שמכיל את מה שצריך
             this.recipesApiRepository.getRecipesApi(url).then((recipes) => {
-                if(ingredients){
-                    let recipesFiltered= getIngredients(recipes)
-                    this.renderer.renderRecipesFromApi(recipesFiltered)
-                }
-                else{
                     this.renderer.renderRecipesFromApi(recipes)
-                }
-               
-
-            }).fail(() => console.log("didnt get from api"))
+            }).fail(() => console.log("didnt get from api or the function didnt work"))
             this.recipesRepository.getFilteredRecipesByName(recName, stringAlergans, stringDiet).then((recipes) => { this.renderer.renderRecipesfromDb(recipes) }).fail(() => console.log("didnt get from api")).fail(() => console.log("didnt get from database"))
         console.log(url)
         })
